@@ -1,91 +1,28 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>Bharat Customer Support</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <script src="client/public/js/jquery-2.1.4.min.js"></script>
-        <script src="client/public/js/bootstrap.min.js"></script>
-    
-      
-      
-        <script src="client/constants/URLConstants.js"></script>
-        <script src="client/service/RESTCALL.js"></script>
+<!doctype html> 
+<html class=no-js> 
+    <head> <meta charset=utf-8> 
+        <title>Customer Care</title> 
+        <meta name=description> <meta name=viewport content="width=device-width">  
+        <link rel=stylesheet href="Customercare/styles/main.css"> 
+        <link rel="stylesheet" href="Customercare/styles/style.css">
+    </head> 
+    <body ng-app="bharat"> 
         
+       <div ui-view></div>
         
-        
-        
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
-    <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
-    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
-    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
-    <script src="http://ui-grid.info/release/ui-grid.js"></script>
-      <script src="client/public/js/angular-route.js"></script>
-       <script src="client/public/js/ng-file-upload-shim.min.js"></script>
-       <script src="client/public/js/ng-file-upload.min.js"></script>
-        <script src="client/public/js/app.js"></script>
-
-        <script src="client/controller/dashboardController.js"></script>
-        <script src="client/controller/ordersController.js"></script>
-        <script src="client/controller/newordersController.js"></script>
-        <script src="client/controller/userController.js"></script>
-        <script src="client/controller/customerController.js"></script>
-       
-
-        <script src="client/directives/ordersDirective.js"></script>
-        <script src="client/directives/userDirective.js"></script>
-
-        <script src="client/service/ordersService.js"></script>
-        <script src="client/service/userService.js"></script>
-        <script src="client/service/customerService.js"></script>
-       
-        
- 
-
-        <link rel="stylesheet" href="client/public/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="client/public/css/font-awesome.min.css"/>
-        <link rel="stylesheet" href="client/public/css/ui-grid.css"/>
-        <link rel="stylesheet" href="client/public/css/style.css"/>
-    </head>
-    <body ng-app="bharatApp">
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Brand</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="userController">
-                     <ul class="nav navbar-nav">
-                        <li><a href="#validateEmployee">Employee Login</a></li>
-                         <li><a href="#vieworder">Manage Orders</a></li>
-                         <li><a href="#addEmployee">Add Employee</a></li>
-                         <li><a href="#listEmployee">Edit Employee</a></li>
-                        <li><a ng-click="userSignout()">{{logout}}</a></li>
-                        
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-
-        <div class="container">
-            <div ng-view></div>
-        </div>  
-
-    </body>
-</html>
+    <script src="Customercare/scripts/vendor.js"></script> 
+    <script src="Customercare/scripts/scripts.js"></script> 
+    <script src="Customercare/scripts/angular-route.js"></script>
+    <script src="Customercare/scripts/angular-touch.js"></script>
+    <script src="Customercare/scripts/ng-file-upload-shim.min.js"></script>
+    <script src="Customercare/scripts/ng-file-upload.min.js"></script>
+    <script src="Customercare/scripts/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <script src="Customercare/Constants/URLConstants.js"></script>
+    <script src="Customercare/Constants/messageConstants.js"></script>
+    <script src="Customercare/Controller/userController.js"></script>
+    <script src="Customercare/Service/userService.js"></script>
+    <script src="Customercare/Controller/dashboardController.js"></script>
+    <script src="Customercare/Controller/ordersController.js"></script>
+    <script src="Customercare/Service/ordersService.js"></script>
+    </body> 
+</html> 

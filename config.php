@@ -14,9 +14,9 @@
 class config {
     function getConnection()
     {
-       // return mysqli_connect("localhost","ashineor_bharat","Ashine123Ashine123","ashineor_bharat");
+      // return mysqli_connect("localhost","ashineor_bharat","Ashine123Ashine123","ashineor_bharat");
         
-        return mysqli_connect("localhost","root","","bharat");
+       return mysqli_connect("localhost","root","","bharat");
     }
     
 }
