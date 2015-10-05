@@ -466,7 +466,7 @@ class User
         
         return $response;
    }   
-    function validateEmployee($conn,$bh_user_name,$bh_user_password)
+   function validateEmployee($conn,$bh_user_name,$bh_user_password)
    {
        $query = "select id from employee where bh_user_name = '$bh_user_name' and bh_user_password = '$bh_user_password'";
        $result = mysqli_query($conn, $query);
@@ -475,8 +475,10 @@ class User
         {
           while($row = mysqli_fetch_array($result))
           {
-            $response[] = array("id"=>$row["id"]); 
-         } 
+           // $response[] = array("id"=>$row["id"],"menu_url"=>$this->getMenuItems($conn,$row["id"])); 
+            $id =$row["id"];
+           $response = $this->getMenuItems($conn, $id);
+          } 
          
         }
         else
@@ -486,6 +488,30 @@ class User
       
        return $response;
    }   
+   function getMenuItems($con,$userid)
+   {
+       $query="select m.name,m.url,e.id,e.user_role from employee e
+join roles r on r.id  = e.user_role
+join menu_role_mapping mr on mr.role_id = e.user_role
+join menu m on m.id = mr.menu_id
+where e.id='$userid'";
+             $result = mysqli_query($con, $query);
+             $response =  array();
+        if($result)
+        {
+          while($row = mysqli_fetch_array($result))
+          {
+            $response[] = array("id"=>$userid,"menu_name"=>$row["name"],"menu_url"=>$row["url"],"user_role"=>$row["user_role"]);
+          } 
+         
+        }
+        else 
+        {
+             $response[] = array("menu_name"=>"null","menu_url"=>"null");
+        }
+        return $response;
+       
+   }
    
    function checkmobileRegisteredforPush($conn,$mobileno)
    {
