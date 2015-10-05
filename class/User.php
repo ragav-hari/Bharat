@@ -512,6 +512,79 @@ where e.id='$userid'";
         return $response;
        
    }
+    function  listEmployee($conn)
+   {
+       $query ="select id,bh_id,bh_user_name,bh_mobileno,bh_emailid,bh_status from employee where bh_status='103'";
+       $result = mysqli_query($conn, $query);
+        
+        if($result)
+        {
+          while($row = mysqli_fetch_array($result))
+          {
+            $response[] = array("id"=>$row["id"],"bh_id"=>$row["bh_id"],"bh_user_name"=>$row["bh_user_name"],"bh_mobileno"=>$row["bh_mobileno"],"bh_emailid"=>$row["bh_emailid"],"bh_status"=>$row["bh_status"]); 
+          } 
+         
+        }
+        else
+        {
+             $response[] = array("status"=>"Failure","message"=>"Failure");
+        }
+      
+       return $response;
+       
+   }
+   function  getEmpDetails($conn,$empid)
+   {
+       $query ="select id,bh_id,bh_user_name,bh_mobileno,bh_emailid,bh_status from employee where id='$empid'";
+       $result = mysqli_query($conn, $query);
+        
+        if($result)
+        {
+          while($row = mysqli_fetch_array($result))
+          {
+            $response[] = array("id"=>$row["id"],"bh_id"=>$row["bh_id"],"bh_user_name"=>$row["bh_user_name"],"bh_mobileno"=>$row["bh_mobileno"],"bh_emailid"=>$row["bh_emailid"],"bh_status"=>$row["bh_status"]); 
+          } 
+         
+        }
+        else
+        {
+             $response[] = array("status"=>"Failure","message"=>"Failure");
+        }
+      
+       return $response;
+       
+       
+   }
+   function  updateEmployee($con,$id,$bh_id,$name,$email,$mobile)
+   {
+        $query = "update employee set bh_id = '$bh_id',bh_user_name='$name',bh_mobileno='$mobile',bh_emailid='$email'  where id = '$id'";
+       $result = mysqli_query($con,$query);
+        if($result)
+        {
+            $response[] = array("status"=>"Success","message"=>"Update Success");
+        }
+        else
+        {
+         $response[] = array("status"=>"Failure","message"=>"Failure");
+        }
+       return $response;
+   }
+   function  deleteEmployee($con,$id)
+   {
+      $query = "update employee set bh_status = '104' where id = '$id'";
+       $result = mysqli_query($con,$query);
+        if($result)
+        {
+            $response[] = array("status"=>"Success","message"=>"Delete Success");
+        }
+        else
+        {
+         $response[] = array("status"=>"Failure","message"=>"Failure");
+        }
+       return $response; 
+       
+   }
+  
    
    function checkmobileRegisteredforPush($conn,$mobileno)
    {

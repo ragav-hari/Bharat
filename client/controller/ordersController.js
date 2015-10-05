@@ -153,6 +153,9 @@
         $scope.user_email=$scope.fulldatas[0].user_email;
         $scope.user_mobileno=$scope.fulldatas[0].user_mobileno;
         $scope.usertype_name=$scope.fulldatas[0].usertype_name;
+        $scope.amount_from=$scope.fulldatas[0].amount_from;
+        $scope.amount_to=$scope.fulldatas[0].amount_to;
+        $scope.gift_name=$scope.fulldatas[0].gift_name;
         
         $scope.images =JSON.parse(window.localStorage.getItem("img"));
         console.log("IMG LOG"+JSON.stringify($scope.images));
@@ -277,7 +280,8 @@
              ordersService.sendPush(data).then(pushResponse);
              function pushResponse(response)
              {
-                 console.log("JSON"+JSON.stringify(response));
+               //  console.log("JSON"+JSON.stringify(response));
+                  $scope.message1="PUSH MESSAGE SEND SUCCESSFULLY"
              }
              
          }

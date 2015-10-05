@@ -59,13 +59,13 @@ where o.order_id='$orderid'";
       function  getFullOrder($con,$orderid)
     {  
          
-       $query= "select od.account_range,od.gift from order_details od
+       $query= "select od.amount_range,od.gift from order_details od
 join orders o on o.order_id = od.order_id where o.order_id='$orderid'"; 
      $result=  mysqli_query($con, $query);
      while($row=  mysqli_fetch_array($result))
      {
          
-       $amount=$row["account_range"];
+       $amount=$row["amount_range"];
        $gift=$row["gift"];
        
        if(($amount!=0)&&($gift!=0))

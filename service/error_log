@@ -828,3 +828,182 @@
 [04-Oct-2015 23:23:18 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
 [04-Oct-2015 23:23:19 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
 [04-Oct-2015 23:23:20 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:56:03 America/Denver] PHP Notice:  Undefined property: stdClass::$user_dealercode in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 20
+[04-Oct-2015 23:56:13 America/Denver] PHP Notice:  Object of class mysqli_result could not be converted to int in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 309
+[04-Oct-2015 23:56:13 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 322
+[04-Oct-2015 23:56:18 America/Denver] PHP Notice:  Object of class mysqli_result could not be converted to int in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 309
+[04-Oct-2015 23:56:18 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 322
+[04-Oct-2015 23:56:38 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:56:40 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:56:41 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:56:49 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/User.php on line 487
+[04-Oct-2015 23:56:52 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:56:52 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:57:31 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:57:31 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:57:59 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:58:52 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:58:52 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:58:52 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:58:56 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:58:56 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:59:08 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:59:08 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[04-Oct-2015 23:59:15 America/Denver] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 65
+[04-Oct-2015 23:59:15 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 101
+[05-Oct-2015 00:00:13 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:13 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:13 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:21 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:21 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:21 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:27 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:27 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:27 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:32 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:32 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:32 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:49 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:49 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:49 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:50 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:50 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:50 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:50 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:50 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:50 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:51 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:52 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:52 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:52 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:52 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:52 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:52 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:53 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:53 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:53 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:53 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:53 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:53 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:54 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:54 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:54 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:54 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:54 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:54 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:55 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:55 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:55 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:55 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:55 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:00:56 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:56 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:00:56 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:04 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:04 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:08 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:08 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:09 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:10 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:10 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:10 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:11 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:11 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:11 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:11 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:11 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:11 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:12 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:12 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:12 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:12 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:12 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:12 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:12 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:13 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:13 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:13 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:13 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:13 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:13 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:14 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:14 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:16 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:16 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:16 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:49 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:01:49 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:01:49 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:02:01 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:02:01 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 30
+[05-Oct-2015 00:02:07 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:02:08 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:02:08 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:03:08 America/Denver] PHP Notice:  Undefined property: stdClass::$user_dealercode in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 20
+[05-Oct-2015 00:03:08 America/Denver] PHP Notice:  Undefined property: stdClass::$user_comments in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 21
+[05-Oct-2015 00:03:56 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:04:32 America/Denver] PHP Notice:  Undefined property: stdClass::$user_dealercode in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 20
+[05-Oct-2015 00:04:38 America/Denver] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 65
+[05-Oct-2015 00:04:38 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 101
+[05-Oct-2015 00:04:42 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:04:45 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:04:45 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:05:49 America/Denver] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 65
+[05-Oct-2015 00:05:49 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 101
+[05-Oct-2015 00:06:00 America/Denver] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 65
+[05-Oct-2015 00:06:00 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 101
+[05-Oct-2015 00:07:49 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:07:53 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:11:42 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:11:47 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:11:58 America/Denver] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 65
+[05-Oct-2015 00:11:58 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 101
+[05-Oct-2015 00:14:08 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:14:14 America/Denver] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 65
+[05-Oct-2015 00:14:14 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 101
+[05-Oct-2015 00:16:05 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:17:05 America/Denver] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 65
+[05-Oct-2015 00:17:05 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 101
+[05-Oct-2015 00:19:21 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:20:56 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:22:16 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:22:17 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:22:17 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:22:53 America/Denver] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 65
+[05-Oct-2015 00:22:53 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 101
+[05-Oct-2015 00:26:18 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:28:17 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:54:35 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:54:37 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:54:37 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 00:58:29 America/Denver] PHP Notice:  Undefined property: stdClass::$user_dealercode in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 20
+[05-Oct-2015 00:58:29 America/Denver] PHP Notice:  Undefined property: stdClass::$user_comments in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 21
+[05-Oct-2015 01:34:18 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:34:18 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:35:21 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:35:21 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:35:21 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:35:31 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:35:32 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:35:32 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:37:53 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:37:53 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:37:53 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:38:12 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:38:12 America/Denver] PHP Fatal error:  Call to undefined method User::listEmployee() in /home5/ashineor/public_html/cloudservices/Bharat/service/listEmployee.php on line 10
+[05-Oct-2015 01:38:41 America/Denver] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 65
+[05-Oct-2015 01:38:41 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 101
+[05-Oct-2015 01:40:30 America/Denver] PHP Notice:  Undefined property: stdClass::$user_dealercode in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 20
+[05-Oct-2015 01:40:30 America/Denver] PHP Notice:  Undefined property: stdClass::$user_comments in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 21
+[05-Oct-2015 01:40:41 America/Denver] PHP Notice:  Object of class mysqli_result could not be converted to int in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 309
+[05-Oct-2015 01:40:41 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 322
+[05-Oct-2015 01:41:10 America/Denver] PHP Notice:  Object of class mysqli_result could not be converted to int in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 309
+[05-Oct-2015 01:41:10 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 322
+[05-Oct-2015 01:45:27 America/Denver] PHP Notice:  Undefined property: stdClass::$user_dealercode in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 20
+[05-Oct-2015 01:45:27 America/Denver] PHP Notice:  Undefined property: stdClass::$user_comments in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 21
+[05-Oct-2015 01:45:40 America/Denver] PHP Notice:  Object of class mysqli_result could not be converted to int in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 309
+[05-Oct-2015 01:45:40 America/Denver] PHP Notice:  Undefined variable: response in /home5/ashineor/public_html/cloudservices/Bharat/class/Order.php on line 322
+[05-Oct-2015 01:51:11 America/Denver] PHP Notice:  Undefined property: stdClass::$user_dealercode in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 20
+[05-Oct-2015 01:51:11 America/Denver] PHP Notice:  Undefined property: stdClass::$user_comments in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 21
+[05-Oct-2015 01:51:11 America/Denver] PHP Notice:  Undefined property: stdClass::$user_amount_range in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 22
+[05-Oct-2015 01:51:11 America/Denver] PHP Notice:  Undefined property: stdClass::$user_gift in /home5/ashineor/public_html/cloudservices/Bharat/service/updateAddressDetails.php on line 23
