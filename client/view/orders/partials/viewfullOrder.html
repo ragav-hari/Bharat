@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title> title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div ng-init="loadDatas()">
+             <div class="row">  
+                  <span><b>Order Details</b></span><br/>
+              <div class="col-md-3">
+                    <span>OrderId {{order_id}}</span>
+              </div>
+               <div class="col-md-3"> 
+                <span>Order Date {{order_date}}</span>
+              </div>
+              <div class="col-md-3"> 
+                   <span>Order Status {{order_status}}</span><br/>
+              </div>
+             </div>
+               
+               <p></p>
+              <div class="row">
+                <div class="col-md-9">
+                    <span><b>Attachments</b></span><br/>
+               <div ng-repeat="im in images">
+                <div class="col-md-3">
+                    <span> <img src="{{im}}" width="200" height="200"></span>
+                </div>
+               </div>
+               <p></p>
+                </div>
+                <div class="col-lg-3">
+                   <span><b>Customer Details</b></span><br/>
+                <p></p>
+               <span>Name {{user_first_name}}</span><br/>
+               <span>Email {{user_email}}</span><br/>
+               <span>Mobile Number {{user_mobileno}}</span><br/>
+               <span>User Type {{usertype_name}}</span><br/>
+                  <span><b> Amount Range: </b>{{amount_from}}-{{amount_to}}</span><br/>
+                <span><b>Gift Name:</b> {{gift_name}}</span><br/>
+                </div>
+              </div>
+               <p></p>
+            <!--   <a href="#sendinvoice" class="btn btn-default">Send Invoice</a> -->
+            <div>
+ 
+    <div class="button" ngf-select ng-model="file" ngf-multiple="false">
+        <a class="btn btn-default">Click to Select File</a>
+    </div>
+ <!--
+    <ul>
+        <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+    </ul>
+ 
+ -->
+    
+  <!--  <pre>{{log}}</pre> -->
+   
+</div>
+            
+
+        </div>
+         <div>{{message}}</div>
+         <a href="{{link1}}">{{location}}</a>
+         <p><h4>Push Notification</h4> </p>
+         <span>Title</span><br/>
+         <span><input type="text" ng-model="push_title"></span><br/>
+         <span>Message</span><br/>
+         <span><textarea ng-model="push_message"></textarea></span><br/>
+         <button class="btn btn-default" ng-click="sendPush()">Send Notification</button>
+    </body>
+</html>
