@@ -1,31 +1,52 @@
-<div class="row">
-    <div class="col-lg-3">
-        <span>Order ID</span> 
-    </div>
-    <div class="col-lg-3">
-        <span>Order Date</span> 
-    </div>
-    <div class="col-lg-3">
-        <span>Order Type</span> 
-    </div>
-    <div class="col-lg-3">
-        <span>Order Status</span> 
-    </div>
-</div>
-<hr/>
-<div class="row">
-    <div class="col-lg-6">
-        <h3>Orders</h3>
-    </div>
-    <div class="col-lg-6">
-        <h3>Customer Detail</h3>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-6">
-        <h3>Generate Invoice</h3>
-    </div>
-    <div class="col-lg-6">
-        <h3>Send Push Notification</h3>
-    </div>
+<div ng-controller="ordersController" ng-init="getSingleOrderDetail()">
+        <div class="row">
+            <div class="col-lg-3">
+                <span>Order ID</span> <span>{{order_id}}</span>
+            </div>
+            <div class="col-lg-3">
+                <span>Order Date</span> <span>{{order_date}}</span>
+            </div>
+            <div class="col-lg-3">
+                <span>Order Type</span> 
+            </div>
+            <div class="col-lg-3">
+                <span>Order Status</span> 
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Orders</h3>
+            
+                     <div ng-if="itemType == 'image'">
+                         <img ng-repeat="items in orderItems" src="UPLOADS/{{items.item_name}}" class="order_image col-md-3"/>
+                     </div>
+                    
+                     <div ng-if="itemType == 'audio'">
+                         <audio controls ng-repeat="items in orderItems" class="col-md-12"> 
+                              <source src="{{items.item_url}}">
+                         </audio>
+                     </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <h3>Customer Detail</h3>
+                <p>Name  : {{first_name}}</p>
+                <p>Mobile : {{mobile_no}} </p>
+                <p>Email : {{email_id}}  </p>
+                <p>Address : {{address}}</p>
+                <p>Pincode : {{pincode}}</p>
+                <p>Landmark : {{landmark}} </p>
+                <p>Account Type : {{account_type}}</p>
+                <p>comments : {{comments}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Generate Invoice</h3>
+            </div>
+            <div class="col-lg-6">
+                <h3>Send Push Notification</h3>
+            </div>
+        </div>
 </div>
