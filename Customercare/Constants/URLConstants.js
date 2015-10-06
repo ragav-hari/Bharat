@@ -6,3 +6,6 @@ var GET_ALL_ORDERS = "/getAllOrders.php"
 var GET_SINGLE_ORDER_DETAIL = "/getSingleOrderDetail.php";
 
 var UPLOADS = "/Bharat/uploads";
+
+
+var FILEUPLOAD = "/uploadInvoice.php";

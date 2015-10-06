@@ -1,0 +1,1 @@
+cordova run --target=F4AZFG00J868

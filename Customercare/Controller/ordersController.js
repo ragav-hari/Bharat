@@ -1,8 +1,8 @@
 (function(){
     
-    bharat.controller('ordersController',['$scope','$location','ordersService','$filter',ordersController]);
+    bharat.controller('ordersController',['$scope','$location','ordersService','$filter','Upload','$timeout',ordersController]);
     
-    function ordersController($scope,$location,ordersService,$filter)
+    function ordersController($scope,$location,ordersService,$filter,Upload,$timeout)
     {
         
         $scope.noorders = false;
@@ -32,10 +32,12 @@
         {
            $scope.order_id = $location.search().order_id;
            ordersService.getSingleOrderDetail({"order_id":$scope.order_id}).then(function(response){
+               console.log(JSON.stringify(response));
                if(response.status === "Success")
                {
                         $scope.noOrderDetail       =   false;
                         $scope.order_date          =   response.order_date;
+                        $scope.order_status        =   response.order_status; 
                         $scope.assignCustomerDetail(response);
                         
                         // check if order item exists
@@ -54,9 +56,11 @@
                         {
                             $scope.hasAmountDetails = true;
                             $scope.assignAmountDetails(response.amountDetails);
+                            $scope.ordertype        = "Placed";
                         }
                         else
                         {
+                            $scope.ordertype        = "Quote";
                             $scope.hasAmountDetails = false;
                         }
                         
@@ -74,11 +78,13 @@
                         // check if invoice exists
                         if(response.invoiceDetails.status === "Success")
                         {
+                            console.log("SUCC"+response.invoiceDetails);
                             $scope.hasInvoiceDetails = true;
                             $scope.assigninvoiceDetails(response.invoiceDetails);
                         }
                         else
                         {
+                            console.log("FAIL"+response.invoiceDetails);
                             $scope.hasInviceDetails = false;
                         }
                }
@@ -97,7 +103,7 @@
             $scope.address              =    response.address;
             $scope.pincode              =    response.pincode;
             $scope.landmark             =    response.landmark;
-            $scope.account_type         =    response.account_type;
+            $scope.usertype_name        =    response.usertype_name;
             $scope.dealer_code          =    response.dealer_code;
             $scope.comments             =    response.comments;
             $scope.mobile_no            =    response.user_mobileno;
@@ -125,6 +131,7 @@
         {
             $scope.invoiceDetails       =    [];
             $scope.invoiceDetails       =    response;
+            console.log("IN"+$scope.invoiceDetails);
         }
         
         
@@ -156,6 +163,68 @@
         $scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         $scope.format = $scope.formats[0];
         /* Date Related Coding Ends*/
+        
+        
+        
+        /* File Upload Functionality Starts */
+        
+        $scope.$watch('files', function () {
+            $scope.upload($scope.files);
+        });
+        
+        $scope.$watch('file', function () {
+             if ($scope.file != null) {
+                $scope.upload([$scope.file]);
+             }
+        });
+        
+        $scope.log = '';
+        
+        $scope.upload = function (files) 
+        {
+        
+            var orders_id   = $scope.order_id;
+            var userid      = sessionStorage.userid;
+            var order_type  = $scope.ordertype;
+            console.log("Upload Called");    
+            if (files && files.length) 
+            {
+                for (var i = 0; i < files.length; i++) 
+                {
+                  var file = files[i];
+                  if (!file.$error) 
+                  {
+                        Upload.upload({url: HOST+FILEUPLOAD, method: 'POST',file: file,
+                            fields: {
+                            'order_id'   : orders_id,
+                            'user_id'    : userid,
+                            'order_type' : order_type
+                            },
+                        sendFieldsAs: 'form',
+                        }).progress(function (evt) 
+                        {
+                        $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        })
+                        .success(function (data, status, headers, config) 
+                        {
+
+                            if(data.status === "Success")
+                            {
+                                $scope.fileurl = data.file_path;
+                                $scope.hasInvoiceDetails = true;
+                            }
+
+                        $timeout(function() {
+                             // $scope.log='file: ' + config.file.name;
+                            // $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+                         });
+                     });
+                   }
+                 }
+              }
+        };
+        
+        /* File Upload Functionality Ends */
 
         
     }

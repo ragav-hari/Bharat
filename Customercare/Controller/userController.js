@@ -27,6 +27,7 @@
                 if(response.status === "Success")
                 {
                     window.localStorage.setItem("dashboardItems",JSON.stringify(response));
+                    sessionStorage.userid = response.id; 
                     $location.path('/dashboard/manageorders');
                 }
                 else
@@ -39,7 +40,7 @@
         // Check if user is logged in
         $scope.checkLogin = function()
         {
-            if(window.localStorage.getItem("dashboardItems") !== null)
+            if(sessionStorage.userid)
             {
                 $location.path('/dashboard/manageorders');
             }

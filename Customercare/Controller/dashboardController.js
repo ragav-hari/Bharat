@@ -7,7 +7,7 @@
         
         $scope.getPreloadData = function()
         {
-            if(window.localStorage.getItem("dashboardItems") === null)
+            if(!sessionStorage.userid)
             {
                 $location.path('/login');
             }

@@ -7,24 +7,24 @@
                 <span>Order Date</span> <span>{{order_date}}</span>
             </div>
             <div class="col-lg-3">
-                <span>Order Type</span> 
+                <span>Order Type</span>  <span>{{ordertype}}</span>
             </div>
             <div class="col-lg-3">
-                <span>Order Status</span> 
+                <span>Order Status</span> <span>{{order_status}}</span>
             </div>
         </div>
         <hr/>
         <div class="row">
             <div class="col-lg-6">
                 <h3>Orders</h3>
-            
+
                      <div ng-if="itemType == 'image'">
                          <img ng-repeat="items in orderItems" src="UPLOADS/{{items.item_name}}" class="order_image col-md-3"/>
                      </div>
                     
                      <div ng-if="itemType == 'audio'">
                          <audio controls ng-repeat="items in orderItems" class="col-md-12"> 
-                              <source src="{{items.item_url}}">
+                              <source src="/Bharat/uploads/">
                          </audio>
                      </div>
             </div>
@@ -37,13 +37,19 @@
                 <p>Address : {{address}}</p>
                 <p>Pincode : {{pincode}}</p>
                 <p>Landmark : {{landmark}} </p>
-                <p>Account Type : {{account_type}}</p>
+                <p>Account Type : {{usertype_name}}</p>
                 <p>comments : {{comments}}</p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
                 <h3>Generate Invoice</h3>
+                <div class="button" ngf-select ng-model="file" ngf-multiple="false">
+                     <a class="btn btn-default">Click to Select File</a>
+                </div>
+                <div ng-repeat="invoice in invoiceDetails">
+                    <p>File: {{invoice.fileurl}} </p>
+                </div>
             </div>
             <div class="col-lg-6">
                 <h3>Send Push Notification</h3>

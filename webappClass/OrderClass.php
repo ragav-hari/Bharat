@@ -40,7 +40,7 @@ class OrderClass
     // get single order details for an order id
     function getSingleOrderDetail($conn,$order_id)
     {
-        $query  = "select o.order_date,od.*,u.user_mobileno from orders o join order_details od on o.order_id = od.order_id join users u on o.user_id = u.user_id  where o.order_id = '$order_id'";
+        $query  = "select o.order_date,od.*,u.user_mobileno,type.usertype_name,scode.code_description from orders o join order_details od on o.order_id = od.order_id join users u on o.user_id = u.user_id join usertype type on type.usertype_id = od.account_type join statuscode scode on scode.code_id = o.order_status where o.order_id = '$order_id'";
         $result = mysqli_query($conn, $query);
         $count  = mysqli_num_rows($result);
         
@@ -48,9 +48,9 @@ class OrderClass
         {
             while ($row = mysqli_fetch_array($result))
             {
-                $response = array("status"=>"Success","order_date"=>$row["order_date"],"first_name"=>$row["first_name"],
+                $response = array("status"=>"Success","order_date"=>$row["order_date"],"order_status"=>$row["code_description"],"first_name"=>$row["first_name"],
                                   "email_id"=>$row["email_id"],"address"=>$row["address"],"pincode"=>$row["pincode"],
-                                  "landmark"=>$row["landmark"],"account_type"=>$row["account_type"],"dealer_code"=>$row["dealer_code"],
+                                  "landmark"=>$row["landmark"],"account_type"=>$row["account_type"],"usertype_name"=>$row["usertype_name"],"dealer_code"=>$row["dealer_code"],
                                   "comments"=>$row["comments"],"amount_range"=>$row["amount_range"],"gift"=>$row["gift"],
                                   "user_mobileno"=>$row["user_mobileno"],"order_items"=>$this->getOrderItems($conn, $order_id),
                                   "amountDetails"=>$this->getAmountRange($conn, $row["amount_range"]),"giftDetails"=>$this->getGift($conn, $row["gift"]),
@@ -172,5 +172,40 @@ class OrderClass
         return $response;
     }
 
+    function generateInvoiceandUpdateOrder($con,$order_id,$filename,$target_path,$user_id,$order_type)
+    {
+        $query  = "insert into invoice(order_id,file_name,file_url,user_id) values('$order_id','$filename','$target_path','$user_id')";
+        $result = mysqli_query($con, $query);
+        if($result)
+        {
+            if($order_type == "Placed")
+            {
+                $response[] = array("status"=>"Success","file_path"=>$target_path,"order_status"=>"","OrderDetail"=>$this->updateOrderStatus($con, $order_id, "106"));
+            }
+            else
+            {
+                 $response[] = array("status"=>"Success","file_path"=>$target_path,"order_status"=>"","OrderDetail"=>$this->updateOrderStatus($con, $order_id, "107"));
+            }
+        }
+        else
+        {
+            $response[] = array("status"=>"Failure","message"=>"Failed to upload");
+        }
+        return $response;
+    }
     
+    function updateOrderStatus($con,$order_id,$status)
+    {
+        $query  = "update orders set order_status = '$status' where order_id = '$order_id'";
+        $result = mysqli_query($con, $query);
+        if($result)
+        {
+            $response = array("status"=>"Success","message"=>"Order updated Successfully");
+        }
+        else
+        {
+            $response = array("status"=>"Failure","message"=>$con->error);
+        }
+        return $response;
+    }
 }

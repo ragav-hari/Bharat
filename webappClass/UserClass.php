@@ -13,6 +13,7 @@ class UserClass
             while($row = mysqli_fetch_array($result))
             {
                 $response = array("status"=>"Success",
+                                    "id"=>$row["id"],
                                     "bh_id"=>$row["bh_id"],
                                     "name"=>$row["bh_name"],
                                     "username"=>$row["bh_user_name"],
