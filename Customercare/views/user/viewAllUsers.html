@@ -1,11 +1,20 @@
-<div class="row" ng-controller="userController" ng-init="getAllUSers()">
+<div class="row" ng-controller="userController" ng-init="getAllUsers()">
     
     <div class="col-lg-12">
         <h1>User Details</h1>
         <hr/>
     </div>
+
+        <div class="col-md-2">
+            <button class="button btn-danger btn-sm btn-block" ng-click="openAddModal()">
+                <i class="glyphicon glyphicon-plus"></i> Add New
+            </button>
+            <br/>
+        </div>  
+    
     
      <div class="col-lg-12">
+        
          <table class="table table-bordered table-condensed table-hover table-striped">
              <thead>
                 <tr>
@@ -16,11 +25,45 @@
                     <td>Email ID</td>
                     <td>User Type</td>
                     <td>Status</td>
+                    <td>Option</td>
                 </tr>
              </thead>
              <tbody>
-                 
+                 <tr ng-repeat="users in allUsers">
+                     <td>{{users.bh_id}}</td>
+                     <td>{{users.bh_name}}</td>
+                     <td>{{users.bh_user_name}}</td>
+                     <td>{{users.bh_mobileno}}</td>
+                     <td>{{users.bh_emailid}}</td>
+                     <td>{{users.role_name}}</td>
+                     <td>{{users.code_description}}</td>
+                     <td>
+                         <button class="button btn-sm  btn-primary" ng-click="openEditModal({{users.id}})">Edit</button>
+                         <button class="button btn-sm  btn-danger" ng-click="deleteUser({{users.id}})">Delete</button>
+                     </td>
+                 </tr>
              </tbody>
          </table>
      </div>
+     <!-- Modal -->
+<script type="text/ng-template" id="addUserModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Add User</h3>
+        </div>
+        <div class="modal-body">
+           <adduser></adduser>
+        </div>
+</script>
+
+<script type="text/ng-template" id="editUserModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Edit User</h3>
+        </div>
+        <div class="modal-body">
+           <edituser></edituser>
+        </div>
+</script>
 </div>
+
+ 
+

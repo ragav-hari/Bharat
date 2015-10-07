@@ -3,14 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/Bharat/webappClass/Constants.php</file>
-            <file>file:/C:/wamp/www/Bharat/Customercare/Controller/dashboardController.js</file>
+            <file>file:/C:/wamp/www/Bharat/Customercare/views/user/viewAllUsers.html</file>
             <file>file:/C:/wamp/www/Bharat/Customercare/Controller/ordersController.js</file>
-            <file>file:/C:/wamp/www/Bharat/service/fileupload.php</file>
-            <file>file:/C:/wamp/www/Bharat/webappService/uploadInvoice.php</file>
-            <file>file:/C:/wamp/www/Bharat/Customercare/views/orders/vieworderdetail.html</file>
+            <file>file:/C:/wamp/www/Bharat/webappService/getAlluserDetails.php</file>
+            <file>file:/C:/wamp/www/Bharat/config.php</file>
+            <file>file:/C:/wamp/www/Bharat/Customercare/scripts/scripts.js</file>
+            <file>file:/C:/wamp/www/Bharat/webappClass/UserClass.php</file>
+            <file>file:/C:/wamp/www/Bharat/class/User.php</file>
+            <file>file:/C:/wamp/www/Bharat/service/uploadfile.php</file>
+            <file>file:/C:/wamp/www/Bharat/Customercare/views/dashboard.html</file>
             <file>file:/C:/wamp/www/Bharat/Customercare/Controller/userController.js</file>
-            <file>file:/C:/wamp/www/Bharat/webappClass/OrderClass.php</file>
+            <file>file:/C:/wamp/www/Bharat/Customercare/views/user/useradd.html</file>
+            <file>file:/C:/wamp/www/Bharat/Customercare/Service/userService.js</file>
         </group>
     </open-files>
 </project-private>

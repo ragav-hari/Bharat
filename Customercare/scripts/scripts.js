@@ -3,7 +3,7 @@ var bharat = angular.module('bharat',['ui.router','ngAnimate','ngTouch','ngFileU
 
 bharat.config(["$stateProvider","$urlRouterProvider",function(stateProvider,urlRouterProvider){
     urlRouterProvider
-    .when('/dashboard','/dashboard/manageorders','/dashboard/vieworderdetail'),
+    .when('/dashboard','/dashboard/manageorders','/dashboard/vieworderdetail','dashboard/viewallusers'),
     urlRouterProvider
     .otherwise('/login'),
     stateProvider
@@ -12,7 +12,7 @@ bharat.config(["$stateProvider","$urlRouterProvider",function(stateProvider,urlR
     .state("dashboard",{url: "/dashboard",templateUrl : "Customercare/views/dashboard.html", parent: "base",controller  : 'userController'})
     .state("manageorders",{url: "/manageorders",parent: "dashboard",templateUrl: "Customercare/views/orders/manageorders.html"})
     .state("vieworderdetail",{url: "/vieworderDetail",parent: "dashboard",templateUrl: "Customercare/views/orders/vieworderdetail.html",params: {'order_id':null},controller:'ordersController'})
-    .state("viewallusers",{url: "/viewallusers",parent: "dashboard",templateUrl: "Customercare/views/user/manageorders.html"});
+    .state("viewallusers",{url: "/viewallusers",parent: "dashboard",templateUrl: "Customercare/views/user/viewAllUsers.html",controller:'userController'});
 }])
  angular.module("bharat").controller("dashboardController", ["$scope", "$state", function(r, t) {
     r.$state = t
@@ -24,3 +24,14 @@ bharat.directive('pushnotification', function() {
   };
 });
 
+bharat.directive('adduser', function() {
+  return {
+    templateUrl: 'Customercare/views/user/useradd.html'
+  };
+});
+
+bharat.directive('edituser', function() {
+  return {
+    templateUrl: 'Customercare/views/user/useredit.html'
+  };
+});

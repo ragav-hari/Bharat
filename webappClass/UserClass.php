@@ -97,7 +97,112 @@ class UserClass
         }
         else
         {
+            $response[] = array("status"=>"Failure","message"=>$conn->error);
+        }
+        return $response;
+    }
+    
+    
+    function getUserPreloadData($conn)
+    {
+        $query  = "select * from roles";
+        $result = mysqli_query($conn,$query);
+        $count = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+            while($row = mysqli_fetch_array($result))
+            {
+                $response[] = array("status"=>"Success","role_id"=>$row["id"],"role_name"=>$row["name"]);
+            }
+        }
+        else
+        {
             $response[] = array("status"=>"Failure");
+        }
+        return $response;
+    }
+    
+    function addUserDetail($conn,$bh_id,$bh_name,$bh_user_name,$bh_password,$bh_mobno,$bh_email,$bh_userrole)
+    {
+        if($this->checkEmailExists($conn, $bh_email))
+        {
+            $response[] = array("status"=>"Failure","message"=>"Email Already Exists");
+        }
+        else
+        {
+            $query = "insert into employee(bh_id,bh_name,bh_user_name,bh_user_password,bh_mobileno,bh_emailid,user_role) values ('$bh_id','$bh_name','$bh_user_name','$bh_password','$bh_mobno','$bh_email','$bh_userrole')";
+            $result = mysqli_query($conn, $query);
+            if($result)
+            {
+                $response[] = array("status"=>"Success","message"=>"Profile Created Successfully");
+            }
+            else 
+            {
+               $response[] = array("status"=>"Failure","message"=>"Profile Creation Error","Source"=>$conn->error); 
+            }
+        }
+        return $response;
+        
+    }
+    
+    function checkEmailExists($conn,$email)
+    {
+        $query = "select * from employee where bh_emailid = '$email'";
+        $result = mysqli_query($conn, $query);
+        $count = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+            $response = true;
+        }
+        else
+        {
+            $response = false;
+        }
+        return $response;
+    }
+    
+    function getUserById($conn,$user_id)
+    {
+        $query = "select * from employee where id = '$user_id'";
+        $result = mysqli_query($conn, $query);
+        while($row = mysqli_fetch_array($result))
+        {
+            $response[] = array("status"=>"Success","id"=>$row["id"],"bh_id"=>$row["bh_id"],"bh_name"=>$row["bh_name"],
+                                    "bh_user_name"=>$row["bh_user_name"],"bh_mobileno"=>$row["bh_mobileno"],
+                                    "bh_emailid"=>$row["bh_emailid"],"bh_user_role"=>$row["user_role"]);
+        }
+        return $response;
+    }
+    
+    function editUserDetail($conn,$id,$bh_id,$bh_name,$bh_user_name,$bh_mobno,$bh_email,$bh_userrole)
+    {
+        $query = "update employee set bh_id = '$bh_id' , bh_name = '$bh_name' , bh_user_name = '$bh_user_name' , bh_mobileno = '$bh_mobno' , bh_emailid = '$bh_email' , user_role = '$bh_userrole' where id = '$id'";
+        $result = mysqli_query($conn,$query);
+        if($result)
+        {
+            $response[] = array("status"=>"Success","message"=>"Profile Updated Successfully");
+        }
+        else 
+        {
+           $response[] = array("status"=>"Failure","message"=>"Profile Updation Error","Source"=>$conn->error); 
+        }
+        return $response;
+    }
+    
+    function deleteUserDetail($conn,$userid)
+    {
+        $query = "update employee set bh_status = '104' where id = '$userid'";
+        $result = mysqli_query($conn, $query);
+        
+        if($result)
+        {
+            $response[] = array("status"=>"Success","message"=>"Profile Deactivated Successfully");
+        }
+        else 
+        {
+           $response[] = array("status"=>"Failure","message"=>"Profile Deactivation Error","Source"=>$conn->error); 
         }
         return $response;
     }

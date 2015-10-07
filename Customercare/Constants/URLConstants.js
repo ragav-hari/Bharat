@@ -8,6 +8,10 @@ var CHECK_OR_ASSIGN_ORDER = "/checkorAssignOrder.php";
 var UPLOADS = "/Bharat/uploads";
 var SEND_PUSH_NOTIFICATION = "/sendPush.php";
 var GETALLUSERS = "/getAlluserDetails.php";
-
+var GETUSERPRELOADDATA = "/getuserpreloaddata.php";
+var ADD_USER_DETAIL = "/adduserdetail.php";
+var GET_USER_DATA_BY_ID = "/getuserbyid.php";
+var EDIT_USER_DATA = "/edituserdata.php";
+var DELETE_USER_DATA = "/deleteuserdata.php";
 var URL = "/Bharat";
 var FILEUPLOAD = "/uploadInvoice.php";

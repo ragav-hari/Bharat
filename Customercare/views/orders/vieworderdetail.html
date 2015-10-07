@@ -24,7 +24,7 @@
                     
                      <div ng-if="itemType == 'audio'">
                          <a ng-repeat="items in orderItems" href="/Bharat/uploads/{{items.item_name}}">
-                             <img src="/Bharat/Customercare/images/audio-icon.jpg" width="100" height="100">
+                             <img src="./Customercare/images/audio-icon.jpg" width="100" height="100">
                          </a>
                      </div>
             </div>
@@ -54,7 +54,7 @@
                          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
                     </div>
                     <div ng-repeat="invoice in invoiceDetails">
-                        <p><a href="/Bharat{{invoice.file_path}}" target="_blank" class="col-md-3"><img src="/Bharat/Customercare/images/logo-adobe-pdf.jpg" width="50" height="50"/></a> </p>
+                        <p><a href="/Bharat{{invoice.file_path}}" target="_blank" class="col-md-3"><img src="./Customercare/images/logo-adobe-pdf.jpg" width="50" height="50"/></a> </p>
                     </div>
                 </div>
             </div>

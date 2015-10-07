@@ -1,8 +1,8 @@
 (function(){
     
-    bharat.controller('dashboardController',['$scope','$location',dashboardController]);
+    bharat.controller('dashboardController',['$scope','$location','$state',dashboardController]);
     
-    function dashboardController($scope,$location)
+    function dashboardController($scope,$location,$state)
     {
         
         $scope.getPreloadData = function()
@@ -18,6 +18,12 @@
             }
         }
         
+        $scope.logout = function()
+        {
+            sessionStorage.removeItem("userid");
+            window.localStorage.removeItem("dashboardItems");
+            $state.go("login");
+        }
  
             
        

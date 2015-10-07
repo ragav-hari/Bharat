@@ -8,7 +8,7 @@ $conn = $configobj->getConnection();
 
 $userobj = new UserClass();
 
-echo json_encode($userobj->getAllUserDetails($conn));
+echo json_encode($userobj->getUserPreloadData($conn));
 
 
 
