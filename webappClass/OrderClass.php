@@ -40,7 +40,7 @@ class OrderClass
     // get single order details for an order id
     function getSingleOrderDetail($conn,$order_id)
     {
-        $query  = "select o.order_date,od.*,u.user_mobileno,type.usertype_name,scode.code_description from orders o join order_details od on o.order_id = od.order_id join users u on o.user_id = u.user_id join usertype type on type.usertype_id = od.account_type join statuscode scode on scode.code_id = o.order_status where o.order_id = '$order_id'";
+        $query  = "select o.order_date,od.*,u.user_mobileno,u.user_id,type.usertype_name,scode.code_description from orders o join order_details od on o.order_id = od.order_id join users u on o.user_id = u.user_id join usertype type on type.usertype_id = od.account_type join statuscode scode on scode.code_id = o.order_status where o.order_id = '$order_id'";
         $result = mysqli_query($conn, $query);
         $count  = mysqli_num_rows($result);
         
@@ -51,7 +51,7 @@ class OrderClass
                 $response = array("status"=>"Success","order_date"=>$row["order_date"],"order_status"=>$row["code_description"],"first_name"=>$row["first_name"],
                                   "email_id"=>$row["email_id"],"address"=>$row["address"],"pincode"=>$row["pincode"],
                                   "landmark"=>$row["landmark"],"account_type"=>$row["account_type"],"usertype_name"=>$row["usertype_name"],"dealer_code"=>$row["dealer_code"],
-                                  "comments"=>$row["comments"],"amount_range"=>$row["amount_range"],"gift"=>$row["gift"],
+                                  "comments"=>$row["comments"],"amount_range"=>$row["amount_range"],"gift"=>$row["gift"],"user_id"=>$row["user_id"],
                                   "user_mobileno"=>$row["user_mobileno"],"order_items"=>$this->getOrderItems($conn, $order_id),
                                   "amountDetails"=>$this->getAmountRange($conn, $row["amount_range"]),"giftDetails"=>$this->getGift($conn, $row["gift"]),
                                   "invoiceDetails"=>$this->getInvoiceofOrder($conn,$order_id));
@@ -162,7 +162,7 @@ class OrderClass
         {
             while($row = mysqli_fetch_array($result))
             {
-                $response[] = array("status"=>"Success","file_name"=>$row["file_name"],"file_url"=>$row["file_url"]);
+                $response[] = array("status"=>"Success","file_name"=>$row["file_name"],"file_path"=>$row["file_url"]);
             }
         }
         else
@@ -207,5 +207,143 @@ class OrderClass
             $response = array("status"=>"Failure","message"=>$con->error);
         }
         return $response;
+    }
+    
+    function checkorAssignOrder($conn,$user_id,$order_id)
+    {
+        $status = $this->checkiforderisassigned($conn, $user_id, $order_id);
+        
+        if($status == 1)
+        {
+            $response = array("status"=>"Success","no"=>$status);
+        }
+        else if($status == 2) 
+        {
+            $response = array("status"=>"Failure","no"=>$status);
+        }
+        else if($status == 3)
+        {
+            $response = array("status"=>"Success","no"=>$status);
+        }
+        else
+        {
+            $response = array("status"=>"Failure","no"=>$status);
+        }
+        return $response;
+    }
+    
+    function checkiforderisassigned($conn,$user_id,$order_id)
+    {
+        $query  = "select * from processby where order_id = '$order_id'";
+        $result = mysqli_query($conn, $query);
+        $count  = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+            while($row = mysqli_fetch_array($result))
+            {
+                if($row["emp_id"] == $user_id)
+                {
+                    $response = 1; //already assigned to me
+                }
+                else
+                {
+                    $response = 2; //already assigned to others
+                }
+            }
+        }
+        else
+        {
+            $response = $this->assignOrdertoEmployee($conn, $user_id, $order_id); 
+        }
+        return $response;
+    }
+    
+    function assignOrdertoEmployee($conn,$user_id,$order_id)
+    {
+        $query  = "insert into processby(order_id,emp_id) values($order_id,$user_id)";
+        $result = mysqli_query($conn, $query);
+        
+        if($result)
+        {
+            $response = 3; // assigned to me
+        }
+        else
+        {
+            $response = 4; // error
+        }
+        return $response;
+    }
+    
+    function insertPushMessage($con,$userid,$mobile,$orderid,$title,$message)
+    {  
+        $current_date= gmdate('Y-m-d h:i:s ');
+        $query = "insert into push_message(cust_id,order_id,title,message,send_date_time,customer_mobile) values('$userid','$orderid','$title','$message','$current_date','$mobile')";
+        $result = mysqli_query($con, $query);
+        if($result)
+        {
+          $res = $this->sendPushFromServer($con,$mobile,$title,$message);
+          $response[] = array("status"=>"Success","message"=>"INSERT Success","Push"=>$res);
+        }
+        else
+        {
+          $response[] = array("status"=>$con->error,"message"=>"");
+        }
+        return $response;  
+    }
+    
+    function getToken($conn,$mobileno)
+    {
+       $query = "select * from registerpush where mobile_no = '$mobileno'";
+       $result = mysqli_query($conn, $query);
+       $count = mysqli_num_rows($result);
+       if($count > 0)
+       {
+           while($row = mysqli_fetch_array($result))
+           {
+               $response = $row["token_id"];
+           }
+       }
+       else
+       {
+           $response = "empty";
+       }
+       return $response;
+    }
+   
+    function sendPushFromServer($conn,$mobile,$title,$message)
+    {
+        $apiKey = "AIzaSyCWa_0lJ3Nne8K8Nv8Tj9JwMc-a57L0Idk";
+
+        $registrationIDs = array($this->getToken($conn, $mobile));
+
+        $url = 'https://android.googleapis.com/gcm/send';
+
+        $fields = array(
+            'registration_ids' => $registrationIDs,
+            'data' => array("title"=>$title,"message" => $message ),
+        );
+        $headers = array(
+            'Authorization: key=' . $apiKey,
+            'Content-Type: application/json'
+        );
+
+    // Open connection
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+        $result = curl_exec($ch);
+        if ($result === FALSE) {
+            return false;
+        }
+
+        curl_close($ch);   
+        return true;
+
     }
 }

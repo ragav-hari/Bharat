@@ -3,7 +3,7 @@ var bharat = angular.module('bharat',['ui.router','ngAnimate','ngTouch','ngFileU
 
 bharat.config(["$stateProvider","$urlRouterProvider",function(stateProvider,urlRouterProvider){
     urlRouterProvider
-    .when('/dashboard','/dashboard/manageorders'),
+    .when('/dashboard','/dashboard/manageorders','/dashboard/vieworderdetail'),
     urlRouterProvider
     .otherwise('/login'),
     stateProvider
@@ -11,9 +11,16 @@ bharat.config(["$stateProvider","$urlRouterProvider",function(stateProvider,urlR
     .state("login", {url: "/login",parent: "base",templateUrl: "Customercare/views/login/login.html",controller: "userController"})
     .state("dashboard",{url: "/dashboard",templateUrl : "Customercare/views/dashboard.html", parent: "base",controller  : 'userController'})
     .state("manageorders",{url: "/manageorders",parent: "dashboard",templateUrl: "Customercare/views/orders/manageorders.html"})
-    .state("vieworderdetail",{url: "/vieworderDetail?order_id",parent: "dashboard",templateUrl: "Customercare/views/orders/vieworderdetail.html"});
+    .state("vieworderdetail",{url: "/vieworderDetail",parent: "dashboard",templateUrl: "Customercare/views/orders/vieworderdetail.html",params: {'order_id':null},controller:'ordersController'})
+    .state("viewallusers",{url: "/viewallusers",parent: "dashboard",templateUrl: "Customercare/views/user/manageorders.html"});
 }])
  angular.module("bharat").controller("dashboardController", ["$scope", "$state", function(r, t) {
     r.$state = t
 }]);
+
+bharat.directive('pushnotification', function() {
+  return {
+    templateUrl: 'Customercare/views/orders/pushNotification.html'
+  };
+});
 

@@ -1,11 +1,12 @@
 (function(){
     
-    bharat.controller('ordersController',['$scope','$location','ordersService','$filter','Upload','$timeout',ordersController]);
+    bharat.controller('ordersController',['$scope','$location','ordersService','$filter','Upload','$timeout','$state',ordersController]);
     
-    function ordersController($scope,$location,ordersService,$filter,Upload,$timeout)
+    function ordersController($scope,$location,ordersService,$filter,Upload,$timeout,$state)
     {
         
         $scope.noorders = false;
+        $scope.invoiceDetails  =  [];
         
          // Function to get all orders
         $scope.getAllOrders = function()
@@ -15,7 +16,7 @@
             
             ordersService.getAllOrders({"date":$scope.date}).then(function(response){
                     
-                if(response[0].status == "Success")
+                if(response[0].status === "Success")
                 {
                    $scope.noorders = false; 
                    $scope.orderList = response;
@@ -27,10 +28,77 @@
             })
         }
         
+        $scope.checkOrderStatus = function(order_id)
+        {
+            $scope.user_id  = sessionStorage.userid;
+            $scope.order_id = order_id;
+            $scope.checkorAssignOrderForUser($scope.order_id,$scope.user_id);
+        }
+        
+        // :todo allow admin to view report //error pending
+        $scope.checkResponsiblity = function(responsibility)
+        {
+            $scope.responsibilityList = [];
+            $scope.dashboardItems     = JSON.parse(window.localStorage.getItem("dashboardItems"));
+            $scope.status = true;
+            $scope.responsibilityList = $scope.dashboardItems.preloaddata.responsibilities;
+            
+            for(var i = 0 ; i < $scope.responsibilityList.length ; i++)
+            {
+                if($scope.responsibilityList[i].id === responsibility)
+                {
+                    $scope.status = true;
+                }
+                else
+                {
+                    $scope.status = false;
+                }
+            }
+
+            return status;
+            
+        }
+        
+        // assign/check employee handling the order
+        $scope.checkorAssignOrderForUserfromManageOrder = function(orderid)
+        {
+                $scope.checkResponsiblity(2);
+                $user_id = sessionStorage.userid;       
+                ordersService.checkorAssignOrderForUser({"user_id":$user_id,"order_id":orderid}).then(function(response){
+
+                if(response.status === "Success")
+                {
+                   $state.go("vieworderdetail",{order_id:orderid}); // url routing problem
+                }
+                else
+                {
+                   alert("You are not allowed to process the order");
+                }
+            });
+        }
+        
+        $scope.checkorAssignOrderForUserfromQueryString = function($order_id,$user_id)
+        {
+            if($order_id === null){$state.go("manageorders")}
+            ordersService.checkorAssignOrderForUser({"user_id":$user_id,"order_id":$order_id}).then(function(response){
+                
+                if(response.status === "Success")
+                {
+                   
+                }
+                else
+                {
+                   $state.go("manageorders");
+                }
+            });
+        }
+        
         // Function to get complete details of an order
         $scope.getSingleOrderDetail = function()
         {
-           $scope.order_id = $location.search().order_id;
+           $scope.order_id = $state.params["order_id"];
+           $scope.user_id  = sessionStorage.userid;
+           $scope.checkorAssignOrderForUserfromQueryString($scope.order_id,$scope.user_id);
            ordersService.getSingleOrderDetail({"order_id":$scope.order_id}).then(function(response){
                console.log(JSON.stringify(response));
                if(response.status === "Success")
@@ -76,7 +144,7 @@
                         }
                         
                         // check if invoice exists
-                        if(response.invoiceDetails.status === "Success")
+                        if(response.invoiceDetails[0].status === "Success")
                         {
                             console.log("SUCC"+response.invoiceDetails);
                             $scope.hasInvoiceDetails = true;
@@ -98,6 +166,7 @@
         
         $scope.assignCustomerDetail     =    function(response)
         {
+            $scope.user_id              =    response.user_id;
             $scope.first_name           =    response.first_name;
             $scope.email_id             =    response.email_id;
             $scope.address              =    response.address;
@@ -129,11 +198,19 @@
         
         $scope.assigninvoiceDetails     =    function(response)
         {
-            $scope.invoiceDetails       =    [];
             $scope.invoiceDetails       =    response;
             console.log("IN"+$scope.invoiceDetails);
         }
         
+        
+        $scope.sendPushNotification = function()
+        {
+            var data = {"title":$scope.push.title,"message":$scope.push.message,"order_id":$scope.order_id,"user_id":$scope.user_id,"mobile_no":$scope.mobile_no};
+            
+            ordersService.sendPushNotification(data).then(function(response){
+                alert(JSON.stringify(response));
+            });
+        }
         
         
        /* Date Related Coding Starts*/
@@ -185,8 +262,7 @@
         
             var orders_id   = $scope.order_id;
             var userid      = sessionStorage.userid;
-            var order_type  = $scope.ordertype;
-            console.log("Upload Called");    
+            var order_type  = $scope.ordertype; 
             if (files && files.length) 
             {
                 for (var i = 0; i < files.length; i++) 
@@ -202,15 +278,24 @@
                             },
                         sendFieldsAs: 'form',
                         }).progress(function (evt) 
-                        {
-                        $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        { 
+                            $scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                            if($scope.progressPercentage === 100)
+                            {
+                                $scope.showProgressbar = false;
+                            }
+                            else
+                            {
+                                $scope.showProgressbar = true;
+                            }
                         })
                         .success(function (data, status, headers, config) 
                         {
-
-                            if(data.status === "Success")
+                            console.log("FILE"+JSON.stringify(data));    
+                            if(data[0].status === "Success")
                             {
-                                $scope.fileurl = data.file_path;
+                                $scope.fileurl = data[0].file_path;
+                                $scope.invoiceDetails.push(data[0]);
                                 $scope.hasInvoiceDetails = true;
                             }
 

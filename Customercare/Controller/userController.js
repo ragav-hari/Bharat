@@ -46,6 +46,13 @@
             }
         }
         
+        $scope.getAllUSers = function()
+        {
+            userService.getAllUsers().then(function(response){
+               alert(JSON.stringify(response));
+            });
+        }
+        
         
     } 
 }())

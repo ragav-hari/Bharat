@@ -80,4 +80,25 @@ class UserClass
         return $response;
     }
     
+    function getAllUserDetails($conn)
+    {
+        $query  = "select emp.*,status.code_description,r.name as role_name from employee emp join statuscode status on status.code_id = emp.bh_status join roles r on r.id = emp.user_role";
+        $result = mysqli_query($conn,$query);
+        $count = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+            while($row = mysqli_fetch_array($result))
+            {
+                $response[] = array("status"=>"Success","id"=>$row["id"],"bh_id"=>$row["bh_id"],"bh_name"=>$row["bh_name"],
+                                    "bh_user_name"=>$row["bh_user_name"],"bh_mobileno"=>$row["bh_mobileno"],
+                                    "bh_emailid"=>$row["bh_emailid"],"code_description"=>$row["code_description"],"role_name"=>$row["role_name"]);
+            }
+        }
+        else
+        {
+            $response[] = array("status"=>"Failure");
+        }
+        return $response;
+    }
 }
