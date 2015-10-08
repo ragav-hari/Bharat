@@ -42,33 +42,33 @@
             $scope.dashboardItems     = JSON.parse(window.localStorage.getItem("dashboardItems"));
             $scope.status = true;
             $scope.responsibilityList = $scope.dashboardItems.preloaddata.responsibilities;
+            console.log("RESP LIST"+responsibility);
             
             for(var i = 0 ; i < $scope.responsibilityList.length ; i++)
             {
-                if($scope.responsibilityList[i].id === responsibility)
-                {
-                    $scope.status = true;
-                }
-                else
+                if($scope.responsibilityList[i].id !== 5)
                 {
                     $scope.status = false;
                 }
+                else
+                {
+                    $scope.status = true;
+                }
             }
 
-            return status;
+            return $scope.status;
             
         }
         
         // assign/check employee handling the order
         $scope.checkorAssignOrderForUserfromManageOrder = function(orderid)
-        {
-                $scope.checkResponsiblity(2);
+        {   
                 $user_id = sessionStorage.userid;       
                 ordersService.checkorAssignOrderForUser({"user_id":$user_id,"order_id":orderid}).then(function(response){
-
+                console.log("CHECK"+JSON.stringify(response));        
                 if(response.status === "Success")
                 {
-                   $state.go("vieworderdetail",{order_id:orderid}); // url routing problem
+                   $state.go("vieworderdetail",{order_id:orderid}); 
                 }
                 else
                 {
@@ -208,7 +208,16 @@
             var data = {"title":$scope.push.title,"message":$scope.push.message,"order_id":$scope.order_id,"user_id":$scope.user_id,"mobile_no":$scope.mobile_no};
             
             ordersService.sendPushNotification(data).then(function(response){
-                console.log(JSON.stringify(response));
+                if(response[0].status === "Success" && response[0].Push === true) 
+                {
+                    alert("Push Send Successfuly");
+                    $scope.push.title = "";
+                    $scope.push.message = "";
+                }
+                else
+                {
+                    alert("Push Sending Failure");
+                }
             });
         }
         

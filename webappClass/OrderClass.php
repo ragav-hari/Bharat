@@ -230,23 +230,51 @@ class OrderClass
     
     function checkorAssignOrder($conn,$user_id,$order_id)
     {
-        $status = $this->checkiforderisassigned($conn, $user_id, $order_id);
-        
-        if($status == 1)
+        $checkadmin = $this->checkUserisAdmin($conn,$user_id);
+        if($checkadmin)
         {
-            $response = array("status"=>"Success","no"=>$status);
-        }
-        else if($status == 2) 
-        {
-            $response = array("status"=>"Failure","no"=>$status);
-        }
-        else if($status == 3)
-        {
-            $response = array("status"=>"Success","no"=>$status);
+            $response = array("status"=>"Success");
         }
         else
         {
-            $response = array("status"=>"Failure","no"=>$status);
+                $status = $this->checkiforderisassigned($conn, $user_id, $order_id);
+        
+                if($status == 1)
+                {
+                    $response = array("status"=>"Success","no"=>$status);
+                }
+                else if($status == 2) 
+                {
+                    $response = array("status"=>"Failure","no"=>$status);
+                }
+                else if($status == 3)
+                {
+                    $response = array("status"=>"Success","no"=>$status);
+                }
+                else
+                {
+                    $response = array("status"=>"Failure","no"=>$status);
+                }
+        }
+       
+        return $response;
+    }
+    
+    function checkUserisAdmin($conn,$user_id)
+    {
+        $query = "select user_role from employee where id = '$user_id'";
+        $result = mysqli_query($conn, $query);
+        while($row = mysqli_fetch_array($result))
+        {
+            $role = $row["user_role"];
+            if($role == 1)
+            {
+                $response = true;
+            }
+            else
+            {
+                $response = false;
+            }
         }
         return $response;
     }

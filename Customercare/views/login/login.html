@@ -3,13 +3,13 @@
          <div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4"> 
              <img src="/Bharat/Customercare/images/flat-avatar.png" class=user-avatar> 
              <h3>Bharat Ration Customer Care</h3> 
-             <form role=form ng-submit="userLogin()"> 
+             <form role=form name="form" ng-submit="userLogin()"> 
                  <div class=form-content> 
                      <div class=form-group> 
-                         <input type=text class="form-control input-underline input-lg" ng-model="user.loginid" placeholder=Email> 
+                         <input type=email required class="form-control input-underline input-lg" id="loginid" name="loginid" ng-model="user.loginid" placeholder=Email> 
                      </div> 
                      <div class=form-group> 
-                         <input type=password class="form-control input-underline input-lg" ng-model="user.password" placeholder=Password> 
+                         <input type=password required="" class="form-control input-underline input-lg" id="password" name="password" ng-model="user.password" placeholder=Password> 
                      </div> 
                  </div> 
                  <p style="text-align: center;color:white">{{loginErrorMessage}}</p>
