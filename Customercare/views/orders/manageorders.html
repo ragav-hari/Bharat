@@ -10,7 +10,11 @@
             </p>
         </div>
         <div class="col-lg-6">
-                
+            <select ng-model="order_type_select" class="form-control" ng-change="selectOrderByType()">
+                <option value="0">All</option>
+                <option value="1">Quote</option>
+                <option value="2">Placed</option>
+            </select>
         </div>
     </div>
     <br/>

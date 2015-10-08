@@ -23,6 +23,15 @@ class OrderClass
         return $response;
     }
     
+    // :todo
+    function getOrderByType($conn,$order_type,$date)
+    {
+        if($order_type == 1)
+        {
+            //
+        }
+    }
+    
     function getEmployeesHandlingOrders($conn,$order_id)
     {
         $query = "select p.emp_id,e.bh_name from processby p join employee e on e.id = p.emp_id where order_id = '$order_id' order by p.id desc";

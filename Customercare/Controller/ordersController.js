@@ -8,6 +8,7 @@
         $scope.noorders = false;
         $scope.invoiceDetails  =  [];
         $scope.allocmessagediv = []; 
+        $scope.order_type_select = 0;
          // Function to get all orders
         $scope.getAllOrders = function()
         {
@@ -26,6 +27,33 @@
                     $scope.noorders = true;
                 }
             })
+        }
+        
+        $scope.selectOrderByType = function()
+        {
+            
+            if($scope.order_type_select == 0) // all orders
+            {
+                ordersService.getAllOrders({"date":$scope.date}).then(function(response){
+                    console.log("ALL ORDER"+JSON.stringify(response));    
+                    if(response[0].status === "Success")
+                    {
+                       $scope.noorders = false; 
+                       $scope.orderList = response;
+                    }
+                    else
+                    {
+                        $scope.noorders = true;
+                    }
+               })
+            }
+            else
+            {
+                var data = {"order_type":$scope.order_type_select,"date":$scope.date};
+                ordersService.getOrderByOrderType(data).then(function(response){
+                    console.log("ORDER"+JSON.stringify(response));
+                });
+            }
         }
         
         $scope.checkOrderStatus = function(order_id)
