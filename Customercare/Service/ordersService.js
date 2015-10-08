@@ -8,7 +8,9 @@
             getAllOrders                :   getAllOrders,
             getSingleOrderDetail        :   getSingleOrderDetail,   
             checkorAssignOrderForUser   :   checkorAssignOrderForUser,
-            sendPushNotification        :   sendPushNotification
+            sendPushNotification        :   sendPushNotification,
+            getOrdersForEmployee        :   getOrdersForEmployee,
+            allocOrderstoEmployee       :   allocOrderstoEmployee
         }
         
         function getAllOrders(data)
@@ -29,6 +31,16 @@
         function sendPushNotification(data)
         {
             return $http({method: 'POST',data:data,url:HOST+SEND_PUSH_NOTIFICATION}).then(function(response){return response.data;});
+        }
+        
+        function getOrdersForEmployee(data)
+        {
+            return $http({method: 'POST',data:data,url:HOST+GET_ORDERS_FOR_EMPLOYEE}).then(function(response){return response.data;});
+        }
+        
+        function allocOrderstoEmployee(data)
+        {
+            return $http({method: 'POST',data:data,url:HOST+ALLOC_ORDER_To_EMPLOYEE}).then(function(response){return response.data;});
         }
     }
 }())

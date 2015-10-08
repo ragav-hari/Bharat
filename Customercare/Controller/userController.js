@@ -1,8 +1,8 @@
 (function(){
     
-    bharat.controller('userController',['$scope','$location','userService','$modal',userController]);
+    bharat.controller('userController',['$scope','$location','userService','$modal','$state',userController]);
     
-    function userController($scope,$location,userService,$modal)
+    function userController($scope,$location,userService,$modal,$state)
     {
         
         // User Registration Function
@@ -49,8 +49,10 @@
         $scope.getAllUsers = function()
         {
             $scope.userpreload = [];
+            $scope.allUsers = [];
+
+            
             userService.getAllUsers().then(function(response){
-                console.log(JSON.stringify(response));
                if(response[0].status === "Success")
                {
                    $scope.allUsers = response;
@@ -65,6 +67,20 @@
             userService.getUserPreloadData().then(function(response){
                $scope.userpreload = response;
                console.log("PRELOAD"+JSON.stringify($scope.userpreload));
+            });
+        }
+        
+        $scope.getAllUsersForAllocation = function()
+        {
+            userService.getAllUsers().then(function(response){
+             if(response[0].status === "Success")
+               {
+                   $scope.allocuserlist = response;
+               }
+               else
+               {
+                   $scope.allocuserlist = [];
+               }
             });
         }
         
@@ -87,7 +103,7 @@
             modalInstance.result.then(function (selectedItem) {
               $scope.selected = selectedItem;
             }, function () {
-                
+                $state.reload();
             });
         };
         
@@ -128,7 +144,7 @@
             modalInstance.result.then(function (selectedItem) {
               $scope.selected = selectedItem;
             }, function () {
-                
+                 $state.reload();
             });
              
         }
@@ -167,7 +183,6 @@
                         "bh_mobno":$scope.bh_mobno,"bh_email":$scope.bh_email,"bh_userrole":$scope.bh_userrole};
              userService.editUserData(data).then(function(response){
                  $scope.accountstatus = response[0].message;
-                 //console.log("SSS"+response[0].message);
              })       
         }
         
@@ -181,14 +196,15 @@
                userService.deleteUser(data).then(function(response)
                 {
                 alert(response[0].message);
+                $state.reload();
                 }) 
             }
             else
             {
-                
-            }
-            
+                $state.reload();
+            } 
         }
+        
         
         
     } 

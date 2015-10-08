@@ -7,7 +7,7 @@
         
         $scope.noorders = false;
         $scope.invoiceDetails  =  [];
-        
+        $scope.allocmessagediv = []; 
          // Function to get all orders
         $scope.getAllOrders = function()
         {
@@ -15,7 +15,7 @@
             $scope.date = $filter('date')($scope.date,'yyyy-MM-dd'); 
             
             ordersService.getAllOrders({"date":$scope.date}).then(function(response){
-                    
+                console.log("ALL ORDER"+JSON.stringify(response));    
                 if(response[0].status === "Success")
                 {
                    $scope.noorders = false; 
@@ -208,10 +208,50 @@
             var data = {"title":$scope.push.title,"message":$scope.push.message,"order_id":$scope.order_id,"user_id":$scope.user_id,"mobile_no":$scope.mobile_no};
             
             ordersService.sendPushNotification(data).then(function(response){
-                alert(JSON.stringify(response));
+                console.log(JSON.stringify(response));
             });
         }
         
+        $scope.getOrdersForEmployee = function()
+        {
+            $scope.allocmessagediv.length = 0;
+            $scope.allocmessagediv = [];
+            
+            $scope.date = $filter('date')($scope.allocdate,'yyyy-MM-dd'); 
+            var data = {"date":$scope.date,"user_id":$scope.allocuserlists.id};
+            console.log(JSON.stringify(data));
+            ordersService.getOrdersForEmployee(data).then(function(response){
+                 if(response[0].status === "Success")
+                 {
+                     $scope.ordersAssigned = response;
+                     $scope.isorderassigned = true;
+                 }
+                 else
+                 {
+                     $scope.ordersAssigned  = [];
+                     $scope.isorderassigned = false;
+                 }
+            });
+        }
+        
+        $scope.allocOrderstoEmployee = function(order_id,user_id,$index)
+        {
+            var data = {"order_id":order_id,"assign_to":user_id.id};
+            ordersService.allocOrderstoEmployee(data).then(function(response){
+                if(response.status === "Success")
+                { 
+                    $scope.allocmessagediv[$index] = true;
+                    $scope.allocicon = "glyphicon glyphicon-ok";
+                }
+                else
+                {
+                    $scope.allocmessagediv[$index] = true;
+                    $scope.allocicon = "glyphicon glyphicon-remove";
+                }
+            })
+        }
+        
+      
         
        /* Date Related Coding Starts*/
         $scope.today = function() {

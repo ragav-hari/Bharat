@@ -30,14 +30,14 @@
                 </thead>
                 <tbody>
                     <tr ng-if="noorders == true">
-                        <td colspan="6">Sorry no orders found</td>
+                        <td colspan="7">Sorry no orders found</td>
                     </tr>
                     <tr ng-repeat="orders in orderList" ng-if="noorders == false"> 
                         <td>{{orders.order_id}}</td>
                         <td>{{orders.order_date}}</td>
                         <td>{{orders.order_type}}</td>
                         <td>{{orders.status_description}}</td>
-                        <td></td>
+                        <td>{{orders.handled_by.emp_name}}</td>
                         <td><!--<a  class="btn btn-sm btn-info" href="#/dashboard/vieworderDetail?order_id={{orders.order_id}}">View Order</a>-->
                             <button ng-click="checkorAssignOrderForUserfromManageOrder({{orders.order_id}})">View Order</button>
                         </td>

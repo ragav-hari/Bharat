@@ -13,16 +13,35 @@ class OrderClass
         {
             while ($row = mysqli_fetch_array($result))
             {
-                $response[] = array("status"=>"Success","order_id"=>$row["order_id"],"order_date"=>$row["order_date"],"order_status"=>$row["order_status"],"order_type"=>$this->orderType($row["amount_range"]),"status_description"=>$row["code_description"]);
+                $response[] = array("status"=>"Success","order_id"=>$row["order_id"],"order_date"=>$row["order_date"],"order_status"=>$row["order_status"],"order_type"=>$this->orderType($row["amount_range"]),"status_description"=>$row["code_description"],"handled_by"=>$this->getEmployeesHandlingOrders($conn,$row["order_id"]));
             }
         }
         else 
         {
-            $response[] = array("status"=>"Failure","message"=>"No orders found");
+            $response[] = array("status"=>"Failure","message"=>"No orders found","error"=>$conn->error);
         }
         return $response;
     }
     
+    function getEmployeesHandlingOrders($conn,$order_id)
+    {
+        $query = "select p.emp_id,e.bh_name from processby p join employee e on e.id = p.emp_id where order_id = '$order_id' order by p.id desc";
+        $result = mysqli_query($conn, $query);
+        $count = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+            while($row = mysqli_fetch_array($result))
+            {
+                $response = array("status"=>"Success","emp_id"=>$row["emp_id"],"emp_name"=>$row["bh_name"]);
+            }
+        }
+        else
+        {
+            $response = array("status"=>"Failure","error"=>$conn->error);
+        }
+        return $response;
+    }
     // set order type values 
     function orderType($amount_id)
     {
@@ -271,6 +290,42 @@ class OrderClass
         else
         {
             $response = 4; // error
+        }
+        return $response;
+    }
+    
+    function getOrdersForEmployee($conn, $date,$user_id)
+    {
+        $query  = "select o.*,od.amount_range,s.code_description from orders o join order_details od on o.order_id = od.order_id join statuscode s on s.code_id = o.order_status join processby pb on pb.order_id = o.order_id where o.order_status != '104' and o.order_date = '$date' and pb.emp_id = '$user_id'";
+        $result = mysqli_query($conn, $query);
+        $count  = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+            while ($row = mysqli_fetch_array($result))
+            {
+                $response[] = array("status"=>"Success","order_id"=>$row["order_id"],"order_date"=>$row["order_date"],"order_status"=>$row["order_status"],"order_type"=>$this->orderType($row["amount_range"]),"status_description"=>$row["code_description"]);
+            }
+        }
+        else 
+        {
+            $response[] = array("status"=>"Failure","message"=>"No orders found","error"=>$conn->error);
+        }
+        return $response;
+    }
+    
+    function allocOrderToEmployee($conn,$order_id,$assign_to)
+    {
+        $query = "update processby set emp_id = '$assign_to' where order_id = '$order_id'";
+        $result = mysqli_query($conn, $query);
+        
+        if($result)
+        {
+            $response = array("status"=>"Success");
+        }
+        else
+        {
+            $response = array("status"=>"Failure","error"=>$conn->error);
         }
         return $response;
     }

@@ -13,5 +13,7 @@ var ADD_USER_DETAIL = "/adduserdetail.php";
 var GET_USER_DATA_BY_ID = "/getuserbyid.php";
 var EDIT_USER_DATA = "/edituserdata.php";
 var DELETE_USER_DATA = "/deleteuserdata.php";
+var GET_ORDERS_FOR_EMPLOYEE = "/getOrdersForEmployee.php";
+var ALLOC_ORDER_To_EMPLOYEE = "/allocOrderToEmployee.php";
 var URL = "/Bharat";
 var FILEUPLOAD = "/uploadInvoice.php";
