@@ -23,13 +23,57 @@ class OrderClass
         return $response;
     }
     
-    // :todo
     function getOrderByType($conn,$order_type,$date)
     {
-        if($order_type == 1)
+        if($order_type == 2)
         {
-            //
+            $response = $this->getPlacedOrder($conn, $date);
         }
+        else
+        {
+            $response = $this->getQuoteOrder($conn, $date);
+        }
+        return $response;
+    }
+    
+    function getPlacedOrder($conn,$date)
+    {
+        $query  = "select o.*,od.amount_range,s.code_description from orders o join order_details od on o.order_id = od.order_id join statuscode s on s.code_id = o.order_status where o.order_status != '104' and o.order_date = '$date' and od.amount_range > 0 ";
+        $result = mysqli_query($conn, $query);
+        $count  = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+            while ($row = mysqli_fetch_array($result))
+            {
+                $response[] = array("status"=>"Success","order_id"=>$row["order_id"],"order_date"=>$row["order_date"],"order_status"=>$row["order_status"],"order_type"=>$this->orderType($row["amount_range"]),"status_description"=>$row["code_description"],"handled_by"=>$this->getEmployeesHandlingOrders($conn,$row["order_id"]));
+            }
+        }
+        else 
+        {
+            $response[] = array("status"=>"Failure","message"=>"No orders found","error"=>$conn->error);
+        }
+        return $response;
+    }
+    
+    function getQuoteOrder($conn,$date)
+    {
+        $query  = "select o.*,od.amount_range,s.code_description from orders o join order_details od on o.order_id = od.order_id join statuscode s on s.code_id = o.order_status where o.order_status != '104' and o.order_date = '$date' and od.amount_range = 0 ";
+        $result = mysqli_query($conn, $query);
+        $count  = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+            while ($row = mysqli_fetch_array($result))
+            {
+                $response[] = array("status"=>"Success","order_id"=>$row["order_id"],"order_date"=>$row["order_date"],"order_status"=>$row["order_status"],"order_type"=>$this->orderType($row["amount_range"]),"status_description"=>$row["code_description"],"handled_by"=>$this->getEmployeesHandlingOrders($conn,$row["order_id"]));
+            }
+        }
+        else 
+        {
+            $response[] = array("status"=>"Failure","message"=>"No orders found","error"=>$conn->error);
+        }
+        return $response;
     }
     
     function getEmployeesHandlingOrders($conn,$order_id)

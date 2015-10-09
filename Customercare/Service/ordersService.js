@@ -10,7 +10,8 @@
             checkorAssignOrderForUser   :   checkorAssignOrderForUser,
             sendPushNotification        :   sendPushNotification,
             getOrdersForEmployee        :   getOrdersForEmployee,
-            allocOrderstoEmployee       :   allocOrderstoEmployee
+            allocOrderstoEmployee       :   allocOrderstoEmployee,
+            getOrderByOrderType         :   getOrderByOrderType
         }
         
         function getAllOrders(data)
@@ -41,6 +42,11 @@
         function allocOrderstoEmployee(data)
         {
             return $http({method: 'POST',data:data,url:HOST+ALLOC_ORDER_To_EMPLOYEE}).then(function(response){return response.data;});
+        }
+        
+        function getOrderByOrderType(data)
+        {
+            return $http({method: 'POST',data:data,url:HOST+GET_ORDER_BY_TYPE}).then(function(response){return response.data;});
         }
     }
 }())

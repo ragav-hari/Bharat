@@ -1,5 +1,5 @@
 "use strict";
-var bharat = angular.module('bharat',['ui.router','ngAnimate','ngTouch','ngFileUpload','ui.bootstrap','valdr']);
+var bharat = angular.module('bharat',['ui.router','ngAnimate','ngTouch','ngFileUpload','ui.bootstrap','angularSpinner']);
 
 bharat.config(["$stateProvider","$urlRouterProvider",function(stateProvider,urlRouterProvider){
     urlRouterProvider
@@ -9,6 +9,7 @@ bharat.config(["$stateProvider","$urlRouterProvider",function(stateProvider,urlR
     stateProvider
     .state("base", {"abstract": !0,url: "",templateUrl: "Customercare/views/base.html"})
     .state("login", {url: "/login",parent: "base",templateUrl: "Customercare/views/login/login.html",controller: "userController"})
+    .state("forgotpassword", {url: "/forgotpassword",parent: "base",templateUrl: "Customercare/views/user/forgotPassword.html",controller: "userController"})
     .state("dashboard",{url: "/dashboard",templateUrl : "Customercare/views/dashboard.html", parent: "base",controller  : 'userController'})
     .state("manageorders",{url: "/manageorders",parent: "dashboard",templateUrl: "Customercare/views/orders/manageorders.html"})
     .state("vieworderdetail",{url: "/vieworderDetail",parent: "dashboard",templateUrl: "Customercare/views/orders/vieworderdetail.html",params: {'order_id':null},controller:'ordersController'})
@@ -39,20 +40,3 @@ bharat.directive('edituser', function() {
 
 
 
-bharat.config(function(valdrProvider) {
-    console.log("VALDRCALLED");
-  valdrProvider.addConstraints({
-        'User': {
-      'loginid': {
-        'required': {
-          'message': 'Email is required.'
-        }
-      },
-      'password': {
-        'required': {
-          'message': 'Password is required.'
-        }
-      }
-  }
-});
-});

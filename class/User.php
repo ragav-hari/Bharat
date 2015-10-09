@@ -396,7 +396,7 @@ class User
        }
        else
        {
-           $count = "null";
+           $count = 0;
        }
        return $count;
    }

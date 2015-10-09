@@ -11,8 +11,7 @@
             getUserPreloadData  : getUserPreloadData,
             getUserDataByID     : getUserDataByID,
             editUserData        : editUserData,
-            deleteUser          : deleteUser,
-            getOrderByOrderType : getOrderByOrderType
+            deleteUser          : deleteUser
         }
         
         function userRegistration()
@@ -55,10 +54,7 @@
             return $http({method: 'POST',data:data,url:HOST+DELETE_USER_DATA}).then(function(response){return response.data;});
         }
         
-        function getOrderByOrderType(data)
-        {
-            return $http({method: 'POST',data:data,url:HOST+GET_ORDER_BY_TYPE}).then(function(response){return response.data;});
-        }
+       
     }
 }())
         
