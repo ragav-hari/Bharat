@@ -9,5 +9,6 @@ $obj = new Order();
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
-$orderid = $request->user_mobileno;
-echo json_encode($obj->getAllOrderList($conn,$orderid));
+$orderid = $request->order_id;
+
+echo json_encode($obj->getALLDatas($conn, $orderid));

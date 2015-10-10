@@ -20,7 +20,8 @@ else
 	$file_size = $_FILES['uploadedfile']['size'];
 	$file_tmp  = $_FILES['uploadedfile']['tmp_name'];
 	$file_type = $_FILES['uploadedfile']['type'];
-        $order_id = $_POST["order_id"];   
+        $order_id = $_POST["order_id"];
+        $filetype = $_POST["filetype"];
         
 	$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
 
@@ -30,7 +31,7 @@ else
                 //updateorder($conn,$order_id,$file_name,$target_path,$userobj)    
           //  $query = "insert into orderitem(item_name,item_url,order_id) values('$file_name','$target_path','$order_id')";
           //  $result = mysqli_query($conn, $query);
-                echo json_encode(updateorder($conn,$order_id,$file_name,$target_path,$userobj));
+                echo json_encode(updateorder($conn,$order_id,$file_name,$target_path,$userobj,$filetype));
                 echo json_encode($file_type);
 	} 
         else{
@@ -40,9 +41,9 @@ else
 }
 
 
-function updateorder($conn,$order_id,$file_name,$target_path,$userobj)
+function updateorder($conn,$order_id,$file_name,$target_path,$userobj,$filetype)
 {
-    if($userobj->placeorder($conn,$order_id,$file_name,$target_path))
+    if($userobj->placeorder($conn,$order_id,$file_name,$target_path,$filetype))
                 {
                     return "Success";
                 }

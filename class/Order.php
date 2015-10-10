@@ -281,8 +281,8 @@ where o.order_date='$date'";
     
     function getAllOrderList($conn,$mobileno)
     {
-        $userid = $this->getUserID($conn, $mobileno);
-        $query = "select * from orders o join statuscode s on s.code_id = o.order_status where o.user_id = $userid and s.code_id != '104'";
+        /*$userid = $this->getUserID($conn, $mobileno);
+        $query = "select * from orders o join statuscode s on s.code_id = o.order_status join order_details od on od.order_id = o.order_id where o.user_id = $userid and s.code_id != '104'";
         $result = mysqli_query($conn,$query);
         $count = mysqli_num_rows($result);
         
@@ -290,32 +290,33 @@ where o.order_date='$date'";
         {
             while($row = mysqli_fetch_array($result))
             {
-                $response[] = array("status"=>"Success","order_id"=>$row["order_id"],"order_date"=>$row["order_date"],"status"=>$row["code_description"]);
+                $response[] = array("status"=>"Success","order_id"=>$row["order_id"],"order_date"=>$row["order_date"],"statuscode"=>$row["order_status"],"status"=>$row["code_description"],"amount"=>$row["amount_range"]);
             }
         }
         else
         {
             $response[] = array("status"=>"Failure","message"=>$conn->error);
-        }
+        }*/
+        $response[] = array("status"=>"me");
         return $response;
     }
     
     function viewSingleOrderDetail($conn,$order_id)
     {
         $hostname = "";
-        $query = "select * from invoice where order_id = '$order_id'";
+        $query = "select * from invoice i join orders o on o.order_id = i.order_id where i.order_id = '$order_id'";
         $result = mysqli_query($conn, $query);
         $count = mysqli_num_rows($result);
         if($result > 0)
         {
             while($row = mysqli_fetch_array($result))
             {
-            $response[] = array("Status"=>"Success","order_id"=>$row["order_id"],"file_name"=>$row["file_name"],"file_url"=>SERVERHOST.$row["file_name"]);
+            $response[] = array("Status"=>"Success","order_id"=>$row["order_id"],"file_name"=>$row["file_name"],"file_url"=>SERVERHOST.$row["file_name"],"order_status"=>$row["order_status"]);
             }
         }
         else
         {
-            $response[] = array("Status"=>"No data","Invoice Not Generated");
+            $response[] = array("Status"=>"Failure","Invoice Not Generated");
         }
        
         
@@ -340,8 +341,57 @@ where o.order_date='$date'";
        }
        return $response;
    }
+   function  getALLDatas($con,$orderid)
+   {
+     $query = "select * from orderitem where order_id = '$orderid'";
+       $result = mysqli_query($con, $query);
+       $count = mysqli_num_rows($result);
+       if($count > 0)
+       {
+           while($row = mysqli_fetch_array($result))
+           {
+               $response[] = array("status"=>"success","item_type"=>$row["item_type"],"item_name"=>$row["item_name"],"item_url"=>$row["item_url"]);
+           }
+       }
+       else
+       {
+           $response[] =  array("status"=>"failure","error"=>$con->error,"order_id"=>$orderid);
+       }
+       return $response;  
+   }
+   function  deleteImage($con,$name,$orderid)
+   {
+       
+        $query = "delete from orderitem where item_name = '$name' and  order_id = '$orderid'"; 
+        $result = mysqli_query($con,$query);
+           if($result)
+           {
+               $response[] = array("status"=>"Success","message"=>"Delete Success");
+           }
+           else
+           {
+                $response[] = array("status"=>"Failure","message"=>"Failed","error"=>$con->error,"file"=>$name);
+           }
+           return $response;
+       
+   }
    
-    function sendPushFromServer($conn,$mobile,$title,$message)
+   function changeOrderStatus($conn,$order_id,$status)
+   {
+       $query = "update orders set order_status = '$status' where order_id = '$order_id'";
+       $result = mysqli_query($conn, $query);
+       
+       if($result)
+       {
+           $response[] = array("status"=>"Success","message"=>"Order Updated Successfully");
+       }
+       else
+       {
+           $response[] = array("status"=>"Failure","message"=>"Order Updation Failure");
+       }
+       return $response;
+   }
+           function sendPushFromServer($conn,$mobile,$title,$message)
     {
         $apiKey = "AIzaSyCWa_0lJ3Nne8K8Nv8Tj9JwMc-a57L0Idk";
 

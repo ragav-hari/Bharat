@@ -1,5 +1,5 @@
 "use strict";
-var bharat = angular.module('bharat',['ui.router','ngAnimate','ngTouch','ngFileUpload','ui.bootstrap','valdr']);
+var bharat = angular.module('bharat',['ui.router','ngAnimate','ngTouch','ngFileUpload','ui.bootstrap']);
 
 bharat.config(["$stateProvider","$urlRouterProvider",function(stateProvider,urlRouterProvider){
     urlRouterProvider
@@ -39,20 +39,3 @@ bharat.directive('edituser', function() {
 
 
 
-bharat.config(function(valdrProvider) {
-    console.log("VALDRCALLED");
-  valdrProvider.addConstraints({
-        'User': {
-      'loginid': {
-        'required': {
-          'message': 'Email is required.'
-        }
-      },
-      'password': {
-        'required': {
-          'message': 'Password is required.'
-        }
-      }
-  }
-});
-});

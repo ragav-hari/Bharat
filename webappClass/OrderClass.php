@@ -206,7 +206,7 @@ class OrderClass
         $result = mysqli_query($con, $query);
         if($result)
         {
-            if($order_type == "Placed")
+            if($order_type == "Quote")
             {
                 $response[] = array("status"=>"Success","file_path"=>$target_path,"order_status"=>"","OrderDetail"=>$this->updateOrderStatus($con, $order_id, "106"));
             }

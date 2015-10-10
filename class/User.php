@@ -385,43 +385,36 @@ class User
    }
    
    
-   function getOrderID($con,$mobileno)
+   function getOrderID($con)
    {
-       $query = "select * from orders";
+       $query = "SELECT * FROM orders";
        $result = mysqli_query($con, $query);
-       
-       if($result)
-       {
-           $count = mysqli_num_rows($result);
-       }
-       else
-       {
-           $count = "null";
-       }
+       $count= mysqli_num_rows($result);
        return $count;
    }
    
    function  createOrder($con,$mobileno)
    {
-        $order_id = $this->getOrderID($con, $mobileno) + 1;
+        $order_id = $this->getOrderID($con)+1;
         $user_id = $this->getUserID($con, $mobileno);
+        
         $now = date("Y-m-d H:i:s");
         $query = "insert into orders(order_id,order_date,user_id,order_status) values('$order_id','$now','$user_id','104')";
         $result = mysqli_query($con, $query);
         if($result)
         {
-            $response = array("status"=>"Success","message"=>"Order Created Successfully","order_id"=>$order_id);
+            $response[] = array("status"=>"Success","message"=>"Order Created Successfully","order_id"=>$order_id);
         }
         else
         {
-            $response = array("status"=>"Failure","message"=>"Order Creation Failure");
+            $response[] = array("status"=>"Failure","message"=>"Order Creation Failure");
         }
         return $response;  
    }
    
-   function placeorder($conn,$order_id,$file_name,$path)
+   function placeorder($conn,$order_id,$file_name,$path,$filetype)
    {
-       $query = "insert into orderitem(item_name,item_url,order_id) values('$file_name','$path','$order_id')";
+       $query = "insert into orderitem(item_name,item_url,order_id,item_type) values('$file_name','$path','$order_id','$filetype')";
        $result = mysqli_query($conn, $query);
        if($result)
        {

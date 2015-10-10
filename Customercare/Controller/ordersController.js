@@ -340,6 +340,7 @@
             var orders_id   = $scope.order_id;
             var userid      = sessionStorage.userid;
             var order_type  = $scope.ordertype; 
+            console.log("ORDER TYPE"+$scope.ordertype);
             if (files && files.length) 
             {
                 for (var i = 0; i < files.length; i++) 
