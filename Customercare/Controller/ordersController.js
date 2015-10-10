@@ -1,9 +1,17 @@
 (function(){
     
-    bharat.controller('ordersController',['$scope','$location','ordersService','$filter','Upload','$timeout','$state',ordersController]);
+    bharat.controller('ordersController',['$scope','$location','ordersService','$filter','Upload','$timeout','$state','usSpinnerService',ordersController]);
     
-    function ordersController($scope,$location,ordersService,$filter,Upload,$timeout,$state)
+    function ordersController($scope,$location,ordersService,$filter,Upload,$timeout,$state,usSpinnerService)
     {
+        $scope.startSpin = function()
+        {
+            usSpinnerService.spin('spinner-1');
+        }
+        $scope.stopSpin = function()
+        {
+            usSpinnerService.stop('spinner-1');
+        }
         
         $scope.noorders = false;
         $scope.invoiceDetails  =  [];
@@ -12,9 +20,11 @@
          // Function to get all orders
         $scope.getAllOrders = function()
         {
+            $scope.startSpin();
             $scope.orderList = [];
             $scope.date = $filter('date')($scope.date,'yyyy-MM-dd'); 
-            
+            $scope.order_type_select = 0;
+            console.log("SEL"+$scope.order_type_select);
             ordersService.getAllOrders({"date":$scope.date}).then(function(response){
                 console.log("ALL ORDER"+JSON.stringify(response));    
                 if(response[0].status === "Success")
@@ -26,33 +36,33 @@
                 {
                     $scope.noorders = true;
                 }
+                $scope.stopSpin();
             })
         }
         
         $scope.selectOrderByType = function()
         {
-            
-            if($scope.order_type_select == 0) // all orders
+            $scope.startSpin();
+            if($scope.order_type_select === 0) // all orders
             {
-                ordersService.getAllOrders({"date":$scope.date}).then(function(response){
-                    console.log("ALL ORDER"+JSON.stringify(response));    
-                    if(response[0].status === "Success")
-                    {
-                       $scope.noorders = false; 
-                       $scope.orderList = response;
-                    }
-                    else
-                    {
-                        $scope.noorders = true;
-                    }
-               })
+               $scope.getAllOrders();
             }
             else
             {
                 var data = {"order_type":$scope.order_type_select,"date":$scope.date};
                 ordersService.getOrderByOrderType(data).then(function(response){
-                    console.log("ORDER"+JSON.stringify(response));
+                    if(response[0].status === "Success")
+                    {
+                         $scope.noorders = false; 
+                         $scope.orderList = response;
+                    }
+                    else
+                    {
+                         $scope.noorders = true;
+                    }
+                    $scope.stopSpin();
                 });
+                
             }
         }
         
@@ -91,6 +101,7 @@
         // assign/check employee handling the order
         $scope.checkorAssignOrderForUserfromManageOrder = function(orderid)
         {   
+                $scope.startSpin();
                 $user_id = sessionStorage.userid;       
                 ordersService.checkorAssignOrderForUser({"user_id":$user_id,"order_id":orderid}).then(function(response){
                 console.log("CHECK"+JSON.stringify(response));        
@@ -102,6 +113,7 @@
                 {
                    alert("You are not allowed to process the order");
                 }
+                $scope.stopSpin();
             });
         }
         
@@ -124,6 +136,7 @@
         // Function to get complete details of an order
         $scope.getSingleOrderDetail = function()
         {
+           $scope.startSpin();
            $scope.order_id = $state.params["order_id"];
            $scope.user_id  = sessionStorage.userid;
            $scope.checkorAssignOrderForUserfromQueryString($scope.order_id,$scope.user_id);
@@ -188,6 +201,7 @@
                {
                    $scope.noOrderDetail = true;
                }
+               $scope.stopSpin();
            }); 
         }
         
@@ -233,6 +247,7 @@
         
         $scope.sendPushNotification = function()
         {
+            $scope.startSpin();
             var data = {"title":$scope.push.title,"message":$scope.push.message,"order_id":$scope.order_id,"user_id":$scope.user_id,"mobile_no":$scope.mobile_no};
             
             ordersService.sendPushNotification(data).then(function(response){
@@ -246,6 +261,7 @@
                 {
                     alert("Push Sending Failure");
                 }
+                $scope.stopSpin();
             });
         }
         
@@ -253,7 +269,7 @@
         {
             $scope.allocmessagediv.length = 0;
             $scope.allocmessagediv = [];
-            
+            $scope.startSpin();
             $scope.date = $filter('date')($scope.allocdate,'yyyy-MM-dd'); 
             var data = {"date":$scope.date,"user_id":$scope.allocuserlists.id};
             console.log(JSON.stringify(data));
@@ -268,6 +284,7 @@
                      $scope.ordersAssigned  = [];
                      $scope.isorderassigned = false;
                  }
+                 $scope.stopSpin();
             });
         }
         
@@ -336,7 +353,7 @@
         
         $scope.upload = function (files) 
         {
-        
+            
             var orders_id   = $scope.order_id;
             var userid      = sessionStorage.userid;
             var order_type  = $scope.ordertype; 
@@ -348,6 +365,7 @@
                   var file = files[i];
                   if (!file.$error) 
                   {
+                       $scope.startSpin();
                         Upload.upload({url: HOST+FILEUPLOAD, method: 'POST',file: file,
                             fields: {
                             'order_id'   : orders_id,
@@ -381,10 +399,13 @@
                              // $scope.log='file: ' + config.file.name;
                             // $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
                          });
+                         $scope.stopSpin();
                      });
                    }
                  }
+                 
               }
+              
         };
         
         /* File Upload Functionality Ends */

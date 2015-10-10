@@ -390,6 +390,16 @@ class User
        $query = "SELECT * FROM orders";
        $result = mysqli_query($con, $query);
        $count= mysqli_num_rows($result);
+       
+       if($result)
+       {
+           $count = mysqli_num_rows($result);
+       }
+       else
+       {
+           $count = 0;
+       }
+
        return $count;
    }
    

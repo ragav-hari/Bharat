@@ -5,21 +5,24 @@
     function userService($q,$http)
     {
         return{
-            addUserDetail       : addUserDetail,
-            userLogin           : userLogin,
-            getAllUsers         : getAllUsers,
-            getUserPreloadData  : getUserPreloadData,
-            getUserDataByID     : getUserDataByID,
-            editUserData        : editUserData,
-            deleteUser          : deleteUser,
-            getOrderByOrderType : getOrderByOrderType
+            addUserDetail               : addUserDetail,
+            userLogin                   : userLogin,
+            getAllUsers                 : getAllUsers,
+            getUserPreloadData          : getUserPreloadData,
+            getUserDataByID             : getUserDataByID,
+            editUserData                : editUserData,
+            deleteUser                  : deleteUser,
+            forgotpassword              : forgotpassword,
+            verifycode                  : verifycode,
+            changeforgottenPassword     : changeforgottenPassword,
+            changePassword              : changePassword  
         }
         
-        function userRegistration()
+        /*function userRegistration()
         {
             return $http({method: 'POST',data:data,url:HOST+REGISTER_USER}).then(function(response){return response;});
         }
-        
+        */
         function userLogin(data)
         {
             return $http({method: 'POST',data:data,url:HOST+LOGIN_USER}).then(function(response){return response.data;});
@@ -55,9 +58,24 @@
             return $http({method: 'POST',data:data,url:HOST+DELETE_USER_DATA}).then(function(response){return response.data;});
         }
         
-        function getOrderByOrderType(data)
+        function forgotpassword(data)
         {
-            return $http({method: 'POST',data:data,url:HOST+GET_ORDER_BY_TYPE}).then(function(response){return response.data;});
+            return $http({method: 'POST',data:data,url:HOST+FORGOT_PASSWORD}).then(function(response){return response.data;});
+        }
+        
+        function verifycode(data)
+        {
+            return $http({method: 'POST',data:data,url:HOST+VERIFY_CODE}).then(function(response){return response.data;});
+        }
+       
+        function changeforgottenPassword(data)
+        {
+            return $http({method: 'POST',data:data,url:HOST+CHANGE_FORGOTTEN_PASSWORD}).then(function(response){return response.data;});
+        }
+        
+        function changePassword(data)
+        {
+            return $http({method: 'POST',data:data,url:HOST+CHANGE_PASSWORD}).then(function(response){return response.data;});
         }
     }
 }())

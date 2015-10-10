@@ -1,9 +1,21 @@
 (function(){
     
-    bharat.controller('userController',['$scope','$location','userService','$modal','$state',userController]);
+    bharat.controller('userController',['$scope','$location','userService','$modal','$state','usSpinnerService',userController]);
     
-    function userController($scope,$location,userService,$modal,$state)
+    function userController($scope,$location,userService,$modal,$state,usSpinnerService)
     {
+        $scope.codesend      = false;
+        $scope.codeverified  = false; 
+        $scope.forgotinitial = true;
+        
+        $scope.startSpin = function()
+        {
+            usSpinnerService.spin('spinner-1');
+        }
+        $scope.stopSpin = function()
+        {
+            usSpinnerService.stop('spinner-1');
+        }
         
         // User Registration Function
         $scope.registerUser = function()
@@ -21,7 +33,7 @@
         $scope.userLogin = function()
         {
             var loginData = $scope.user;
-            
+            $scope.startSpin();
             // User Login Service Call
             userService.userLogin(loginData).then(function(response){
                 if(response.status === "Success")
@@ -34,6 +46,7 @@
                 {
                    $scope.loginErrorMessage = LOGIN_ERROR_MESSAGE;
                 }
+                $scope.stopSpin();
             })
         }
         
@@ -50,7 +63,7 @@
         {
             $scope.userpreload = [];
             $scope.allUsers = [];
-
+            $scope.startSpin();    
             
             userService.getAllUsers().then(function(response){
                if(response[0].status === "Success")
@@ -62,16 +75,18 @@
                {
                    $scope.nousers  = true;
                }
+               
             });
             
             userService.getUserPreloadData().then(function(response){
                $scope.userpreload = response;
-               console.log("PRELOAD"+JSON.stringify($scope.userpreload));
+               $scope.stopSpin();
             });
         }
         
         $scope.getAllUsersForAllocation = function()
         {
+            $scope.startSpin();
             userService.getAllUsers().then(function(response){
              if(response[0].status === "Success")
                {
@@ -81,6 +96,7 @@
                {
                    $scope.allocuserlist = [];
                }
+               $scope.stopSpin();
             });
         }
         
@@ -113,7 +129,7 @@
             $scope.userid = window.localStorage.getItem("edituserid");
             console.log("UID"+$scope.userid);
             var data = {user_id:$scope.userid};
-            
+            $scope.startSpin();
             userService.getUserDataByID(data).then(function(response){
                    $scope.id   = response[0].id;
                    $scope.bh_id = response[0].bh_id;
@@ -123,6 +139,7 @@
                    $scope.bh_email = response[0].bh_emailid;
                    $scope.bh_userrole = response[0].bh_user_role;
                // console.log("RES"+JSON.stringify($scope));
+                   $scope.stopSpin();
             });
         }
         
@@ -151,6 +168,7 @@
 
         $scope.addUserDetail = function()
         {
+            $scope.startSpin();
             var data = {"bh_id":$scope.bh_id,"bh_name":$scope.bh_name,"bh_user_name":$scope.bh_user_name,
                         "bh_password":$scope.bh_password,"bh_mobno":$scope.bh_mobno,"bh_email":$scope.bh_email,"bh_userrole":$scope.bh_userrole};
             userService.addUserDetail(data).then(function(response){
@@ -173,30 +191,35 @@
                {
                    $scope.accountstatus = response[0].message;
                }
-               
+               $scope.stopSpin();
             });
         }
         
         $scope.editUserData = function()
         {
+            $scope.startSpin();
              var data = {"id":$scope.id,"bh_id":$scope.bh_id,"bh_name":$scope.bh_name,"bh_user_name":$scope.bh_user_name,
                         "bh_mobno":$scope.bh_mobno,"bh_email":$scope.bh_email,"bh_userrole":$scope.bh_userrole};
              userService.editUserData(data).then(function(response){
                  $scope.accountstatus = response[0].message;
+                 $scope.stopSpin();
              })       
         }
         
         $scope.deleteUser = function(userid)
         {
+            
             var data = {"user_id":userid};
             var deleteconfirm = confirm("Do you want to delete this profile?");
             
             if(deleteconfirm == true)
             {
+               $scope.startSpin();
                userService.deleteUser(data).then(function(response)
                 {
-                alert(response[0].message);
-                $state.reload();
+                    $scope.stopSpin();
+                    alert(response[0].message);
+                    $state.reload();
                 }) 
             }
             else
@@ -205,6 +228,99 @@
             } 
         }
         
+        
+        $scope.forgotpassword = function()
+        {
+            $scope.startSpin();
+            var data = {"user_email":$scope.emailid};
+            userService.forgotpassword(data).then(function(response){
+               if(response.status === "Success")
+               {
+                   $scope.codesend = true;
+                   $scope.forgotinitial = false;
+               }
+               else
+               {
+                   $scope.forgotinitial = true;
+                   $scope.codesend = false;
+                   $scope.errormessage = response.message;
+               }
+               $scope.stopSpin();
+            });
+            
+        }
+        
+        $scope.verifyCode = function()
+        {
+            $scope.startSpin();
+            var data = {"user_email":$scope.emailid,"user_code":$scope.code};
+            userService.verifycode(data).then(function(response){
+                if(response.status === "Success")
+                {
+                    $scope.codeverified = true;
+                    $scope.codesend = false;
+                }
+                else
+                {
+                    $scope.codesend = true;
+                    $scope.codeverified = false;
+                    $scope.codeerrormessage = response.message;
+                }
+                $scope.stopSpin();
+            });
+        }
+        
+        $scope.changePassword = function()
+        {
+            $scope.startSpin();
+            if($scope.password !== $scope.confirmpassword)
+            {
+                $scope.passworderrormessage = "Passwords donot match";
+            }
+            else
+            {
+                var data = {"emailid":$scope.emailid,"password":$scope.password};
+                userService.changeforgottenPassword(data).then(function(response){
+                    if(response.status === "Success")
+                    {
+                        alert("Password changed successfully");
+                        $state.go('login');
+                    }
+                    else
+                    {
+                        $scope.passworderrormessage = response.message;
+                    }
+                    $scope.stopSpin();
+                });
+            }
+        }
+        
+        $scope.changePassword = function()
+        {
+            $scope.startSpin();
+            if($scope.newpassword !== $scope.confirmpassword)
+            {
+                $scope.errormessage = "Passwords mismatch";
+            }
+            else
+            {
+                var data = {"user_id":sessionStorage.userid,"old_password":$scope.oldpassword,"new_password":$scope.newpassword};
+                userService.changePassword(data).then(function(response){
+                    if(response.status === "Success")
+                    {
+                        alert("Password Changed Successfully");
+                        sessionStorage.removeItem("userid");
+                        window.localStorage.removeItem("dashboardItems");
+                        $state.go("login");
+                    }
+                    else
+                    {
+                        $scope.errormessage = response.message;
+                    }
+                    $scope.stopSpin();
+                });
+            }
+        }
         
         
     } 
