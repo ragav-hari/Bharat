@@ -4,6 +4,10 @@
     
     function userController($scope,$location,userService,$modal,$state,usSpinnerService)
     {
+        $scope.codesend      = false;
+        $scope.codeverified  = false; 
+        $scope.forgotinitial = true;
+        
         $scope.startSpin = function()
         {
             usSpinnerService.spin('spinner-1');
@@ -224,6 +228,91 @@
             } 
         }
         
+        
+        $scope.forgotpassword = function()
+        {
+            var data = {"user_email":$scope.emailid};
+            userService.forgotpassword(data).then(function(response){
+               if(response.status === "Success")
+               {
+                   $scope.codesend = true;
+                   $scope.forgotinitial = false;
+               }
+               else
+               {
+                   $scope.forgotinitial = true;
+                   $scope.codesend = false;
+                   $scope.errormessage = response.message;
+               }
+            });
+            
+        }
+        
+        $scope.verifyCode = function()
+        {
+            var data = {"user_email":$scope.emailid,"user_code":$scope.code};
+            userService.verifycode(data).then(function(response){
+                if(response.status === "Success")
+                {
+                    $scope.codeverified = true;
+                    $scope.codesend = false;
+                }
+                else
+                {
+                    $scope.codesend = true;
+                    $scope.codeverified = false;
+                    $scope.codeerrormessage = response.message;
+                }
+            });
+        }
+        
+        $scope.changePassword = function()
+        {
+            if($scope.password !== $scope.confirmpassword)
+            {
+                $scope.passworderrormessage = "Passwords donot match";
+            }
+            else
+            {
+                var data = {"emailid":$scope.emailid,"password":$scope.password};
+                userService.changeforgottenPassword(data).then(function(response){
+                    if(response.status === "Success")
+                    {
+                        alert("Password changed successfully");
+                        $state.go('login');
+                    }
+                    else
+                    {
+                        $scope.passworderrormessage = response.message;
+                    }
+                });
+            }
+        }
+        
+        $scope.changePassword = function()
+        {
+            if($scope.newpassword !== $scope.confirmpassword)
+            {
+                $scope.errormessage = "Passwords mismatch";
+            }
+            else
+            {
+                var data = {"user_id":sessionStorage.userid,"old_password":$scope.oldpassword,"new_password":$scope.newpassword};
+                userService.changePassword(data).then(function(response){
+                    if(response.status === "Success")
+                    {
+                        alert("Password Changed Successfully");
+                        sessionStorage.removeItem("userid");
+                        window.localStorage.removeItem("dashboardItems");
+                        $state.go("login");
+                    }
+                    else
+                    {
+                        $scope.errormessage = response.message;
+                    }
+                });
+            }
+        }
         
         
     } 
