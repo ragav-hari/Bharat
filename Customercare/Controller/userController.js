@@ -231,6 +231,7 @@
         
         $scope.forgotpassword = function()
         {
+            $scope.startSpin();
             var data = {"user_email":$scope.emailid};
             userService.forgotpassword(data).then(function(response){
                if(response.status === "Success")
@@ -244,12 +245,14 @@
                    $scope.codesend = false;
                    $scope.errormessage = response.message;
                }
+               $scope.stopSpin();
             });
             
         }
         
         $scope.verifyCode = function()
         {
+            $scope.startSpin();
             var data = {"user_email":$scope.emailid,"user_code":$scope.code};
             userService.verifycode(data).then(function(response){
                 if(response.status === "Success")
@@ -263,11 +266,13 @@
                     $scope.codeverified = false;
                     $scope.codeerrormessage = response.message;
                 }
+                $scope.stopSpin();
             });
         }
         
         $scope.changePassword = function()
         {
+            $scope.startSpin();
             if($scope.password !== $scope.confirmpassword)
             {
                 $scope.passworderrormessage = "Passwords donot match";
@@ -285,12 +290,14 @@
                     {
                         $scope.passworderrormessage = response.message;
                     }
+                    $scope.stopSpin();
                 });
             }
         }
         
         $scope.changePassword = function()
         {
+            $scope.startSpin();
             if($scope.newpassword !== $scope.confirmpassword)
             {
                 $scope.errormessage = "Passwords mismatch";
@@ -310,6 +317,7 @@
                     {
                         $scope.errormessage = response.message;
                     }
+                    $scope.stopSpin();
                 });
             }
         }
