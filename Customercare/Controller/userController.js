@@ -168,7 +168,9 @@
 
         $scope.addUserDetail = function()
         {
-            $scope.startSpin();
+            if($scope.bh_reenter_pwd==$scope.bh_password)
+            {
+                 $scope.startSpin();
             var data = {"bh_id":$scope.bh_id,"bh_name":$scope.bh_name,"bh_user_name":$scope.bh_user_name,
                         "bh_password":$scope.bh_password,"bh_mobno":$scope.bh_mobno,"bh_email":$scope.bh_email,"bh_userrole":$scope.bh_userrole};
             userService.addUserDetail(data).then(function(response){
@@ -192,7 +194,14 @@
                    $scope.accountstatus = response[0].message;
                }
                $scope.stopSpin();
-            });
+            }); 
+            }
+            else
+            {
+                
+              $scope.error_message="User Name and Password Does Not Match";
+            }
+          
         }
         
         $scope.editUserData = function()
@@ -270,8 +279,11 @@
             });
         }
         
-        $scope.changePassword = function()
-        {
+       /* $scope.changePassword = function()
+        {  
+            alert("he");
+            alert("called" +$scope.password);
+            alert("caa"+$scope.confirmpassword);
             $scope.startSpin();
             if($scope.password !== $scope.confirmpassword)
             {
@@ -293,8 +305,7 @@
                     $scope.stopSpin();
                 });
             }
-        }
-        
+        }*/
         $scope.changePassword = function()
         {
             $scope.startSpin();
@@ -306,6 +317,7 @@
             {
                 var data = {"user_id":sessionStorage.userid,"old_password":$scope.oldpassword,"new_password":$scope.newpassword};
                 userService.changePassword(data).then(function(response){
+                    console.log("resp"+JSON.stringify(response));
                     if(response.status === "Success")
                     {
                         alert("Password Changed Successfully");

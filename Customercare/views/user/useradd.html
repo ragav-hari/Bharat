@@ -4,37 +4,37 @@
         <input type="hidden" ng-model="id" value="{{id}}">
                  <div class="form-group">
                    <label>Bharat ID</label>
-                   <input type="text" class="form-control" ng-model="bh_id" placeholder="Enter Bharat ID">
+                   <input type="text" class="form-control" ng-model="bh_id" placeholder="Enter Bharat ID" required>
                  </div>
 
                  <div class="form-group">
                    <label>Name</label>
-                   <input type="text" class="form-control" ng-model="bh_name" placeholder="Enter Bharat ID">
+                   <input type="text" class="form-control" ng-model="bh_name" placeholder="Enter Bharat ID" required>
                  </div>
 
                  <div class="form-group">
                    <label>User Name</label>
-                   <input type="text" class="form-control" ng-model="bh_user_name" placeholder="Enter User Name">
+                   <input type="text" class="form-control" ng-model="bh_user_name" placeholder="Enter User Name" required>
                  </div>
 
                  <div class="form-group">
                    <label>Password</label>
-                   <input type="password" class="form-control" ng-model="bh_password" placeholder="Enter Password">
+                   <input type="password" class="form-control" ng-model="bh_password" placeholder="Enter Password" required>
                  </div>
 
                  <div class="form-group">
                    <label>Re enter Password</label>
-                   <input type="password" class="form-control" ng-model="bh_reenter_pwd" placeholder="Re Enter Password">
+                   <input type="password" class="form-control" ng-model="bh_reenter_pwd" placeholder="Re Enter Password" required>
                  </div>
 
                  <div class="form-group">
                    <label>Mobile No</label>
-                   <input type="text" class="form-control" ng-model="bh_mobno" placeholder="Enter Mobile No">
+                   <input type="text" class="form-control" ng-model="bh_mobno" placeholder="Enter Mobile No" required>
                  </div>
 
                  <div class="form-group">
                    <label>Email ID</label>
-                   <input type="email" class="form-control" ng-model="bh_email" placeholder="Enter Email ID">
+                   <input type="email" class="form-control" ng-model="bh_email" placeholder="Enter Email ID" required>
                  </div>
 
                  <div class="form-group">
@@ -43,6 +43,9 @@
                        <option value="1">Admin</option>
                        <option value="2">Customer Care</option>
                    </select>
+                 </div>
+                 <div>
+                     <p class="error">{{error_message}}</p>
                  </div>
                 <p style="text-align: center;color:red;font-size: 15px">{{accountstatus}}</p>
                 <input type="submit" class="btn btn-lg btn-primary">

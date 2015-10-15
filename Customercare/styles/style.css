@@ -29,3 +29,7 @@ and open the template in the editor.
     color:white !important;
     text-align: center;
 }
+.error
+{
+ color: red !important;
+}
