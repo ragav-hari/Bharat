@@ -9,6 +9,6 @@
  $request = json_decode($postdata);
  
  $order_id = $request->order_id;
- $status   = '104';
+ $status   = '109';
  
- echo json_encode($order_id->changeOrderStatus($conn,$order_id,$status));
+ echo json_encode($obj->changeOrderStatusofOrder($conn,$order_id,$status));

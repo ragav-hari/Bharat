@@ -351,9 +351,7 @@ AddDefaultCharset utf-8
     RewriteEngine On
 
     # (2)
-# For security reasons, Option followsymlinks cannot be overridden.
-#    Options +FollowSymlinks
-    Options +SymLinksIfOwnerMatch
+    Options +FollowSymlinks
 
     # (3)
     # Options +SymLinksIfOwnerMatch

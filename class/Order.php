@@ -281,7 +281,7 @@ where o.order_date='$date'";
     
     function getAllOrderList($conn,$mobileno)
     {
-        /*$userid = $this->getUserID($conn, $mobileno);
+        $userid = $this->getUserID($conn, $mobileno);
         $query = "select * from orders o join statuscode s on s.code_id = o.order_status join order_details od on od.order_id = o.order_id where o.user_id = $userid and s.code_id != '104'";
         $result = mysqli_query($conn,$query);
         $count = mysqli_num_rows($result);
@@ -296,11 +296,34 @@ where o.order_date='$date'";
         else
         {
             $response[] = array("status"=>"Failure","message"=>$conn->error);
-        }*/
-        $response[] = array("status"=>"me");
+        }
+
         return $response;
     }
     
+    function getallordersformobile($conn,$mobileno)
+    {
+        $userid = $this->getUserID($conn, $mobileno);
+        $query = "select * from orders o join statuscode s on s.code_id = o.order_status join order_details od on od.order_id = o.order_id where o.user_id = $userid";
+        $result = mysqli_query($conn,$query);
+        $count = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+            while($row = mysqli_fetch_array($result))
+            {
+                $response[] = array("status"=>"Success","order_id"=>$row["order_id"],"order_date"=>$row["order_date"],"statuscode"=>$row["order_status"],"status"=>$row["code_description"],"amount"=>$row["amount_range"]);
+            }
+        }
+        else
+        {
+            $response[] = array("status"=>"Failure","message"=>$conn->error);
+        }
+
+        return $response;
+
+    }
+            
     function viewSingleOrderDetail($conn,$order_id)
     {
         $hostname = "";
@@ -341,6 +364,7 @@ where o.order_date='$date'";
        }
        return $response;
    }
+   
    function  getALLDatas($con,$orderid)
    {
      $query = "select * from orderitem where order_id = '$orderid'";
@@ -359,24 +383,60 @@ where o.order_date='$date'";
        }
        return $response;  
    }
+   
+   function selectItemForDelete($con,$name,$orderid)
+   {
+       $query = "select * from orderitem where order_id = $orderid";
+       $result = mysqli_query($con, $query);
+       $count = mysqli_num_rows($result);
+       if($count > 0)
+       {
+          while($row = mysqli_fetch_array($result))
+          {
+             if($row["item_name"] == rawurlencode($name))
+             {
+                 $id = $row["item_id"];
+             }
+             else
+             {
+                 $id = "null";
+             }
+          }
+       }
+       else
+       {
+           $id = "null";
+       }
+      
+       return $id;
+   }
+   
    function  deleteImage($con,$name,$orderid)
    {
+       $id = $this->selectItemForDelete($con, $name, $orderid);
        
-        $query = "delete from orderitem where item_name = '$name' and  order_id = '$orderid'"; 
+       if($id == "null")
+       {
+           $response[] = array("status"=>"Failure","message"=>"No ID Associated","error"=>$con->error,"file"=>$name,"ORDERID"=>$orderid);
+       }
+       else
+       {
+        $query = "delete from orderitem where item_id = '$id'"; 
         $result = mysqli_query($con,$query);
            if($result)
            {
-               $response[] = array("status"=>"Success","message"=>"Delete Success");
+               $response[] = array("status"=>"Success","message"=>"Deleted Successfully");
            }
            else
            {
-                $response[] = array("status"=>"Failure","message"=>"Failed","error"=>$con->error,"file"=>$name);
+                $response[] = array("status"=>"Failure","message"=>"Failed","error"=>$con->error,"file"=>$name,"ID"=>$id,"ORDERID"=>$orderid);
            }
-           return $response;
+       }
+       return $response;
        
    }
    
-   function changeOrderStatus($conn,$order_id,$status)
+   function changeOrderStatusofOrder($conn,$order_id,$status)
    {
        $query = "update orders set order_status = '$status' where order_id = '$order_id'";
        $result = mysqli_query($conn, $query);
@@ -391,7 +451,8 @@ where o.order_date='$date'";
        }
        return $response;
    }
-           function sendPushFromServer($conn,$mobile,$title,$message)
+   
+   function sendPushFromServer($conn,$mobile,$title,$message)
     {
         $apiKey = "AIzaSyCWa_0lJ3Nne8K8Nv8Tj9JwMc-a57L0Idk";
 

@@ -11,8 +11,9 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form action="../service/getallordersformobile.php" method="POST">
-            <input name="user_mobileno">
+        <form method="post" action="../service/deleteImages.php">
+            <input type="text" name="file" placeholder="FILE">
+            <input type="text" name="order_id" placeholder="ORDERID">
             <input type="submit">
         </form>
     </body>

@@ -12,4 +12,4 @@ $request = json_decode($postdata);
 $file_name = $request->file;
 $order_id  = $request->order_id;
 
-echo json_encode($obj->deleteImage($con, $file_name,$order_id));
+echo json_encode($obj->deleteImage($conn, $file_name,$order_id));

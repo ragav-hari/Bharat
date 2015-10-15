@@ -1,0 +1,69 @@
+<div ng-controller="ordersController" ng-init="getSingleOrderDetail()">
+     <span us-spinner="{radius:50, width:8, length: 16}" spinner-key="spinner-1"></span>
+        <div class="row">
+            <div class="col-lg-3">
+                <span>Order ID</span> : <span>{{order_id}}</span>
+            </div>
+            <div class="col-lg-3">
+                <span>Order Date</span> : <span>{{order_date}}</span>
+            </div>
+            <div class="col-lg-3">
+                <span>Order Type</span> :  <span>{{ordertype}}</span>
+            </div>
+            <div class="col-lg-3">
+                <span>Order Status</span> : <span>{{order_status}}</span>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Orders</h3>
+
+                     <div ng-if="itemType == 'image'">
+                         <a ng-repeat="items in orderItems" target="_blank" href="./uploads/{{items.item_name}}"><img  src="UPLOADS/{{items.item_name}}" class="order_image col-md-3"/></a>
+                     </div>
+                    
+                     <div ng-if="itemType == 'audio'">
+                         <a ng-repeat="items in orderItems" href="./uploads/{{items.item_name}}">
+                             <img src="./Customercare/images/audio-icon.jpg" width="100" height="100">
+                         </a>
+                     </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <h3>Customer Detail</h3>
+                <table class="table table-condensed table-bordered">
+                    <tr><td>User ID</td><td>{{user_id}}</td></tr>
+                    <tr><td>Name</td><td>{{first_name}}</td></tr>
+                    <tr><td>Mobile</td><td>{{mobile_no}}</td></tr>
+                    <tr><td>Email</td><td>{{email_id}}</td></tr>
+                    <tr><td>Address</td><td>{{address}}</td></tr>
+                    <tr><td>Pincode</td><td>{{pincode}}</td></tr>
+                    <tr><td>Landmark</td><td>{{landmark}}</td></tr>
+                    <tr><td>Account Type</td><td>{{usertype_name}}</td></tr>
+                    <tr><td>Comments</td><td>{{comments}}</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Generate Invoice</h3>
+                <div class="button" ngf-select ng-model="file" ngf-multiple="false">
+                     <a class="btn btn-default">Click to Select File</a>
+                     <div ng-if="showProgressbar == true">
+                         <p>Progress</p>
+                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{progressPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+                    </div>
+                    
+                </div>
+                
+                <div ng-repeat="invoice in invoiceDetails">
+                        <p><a href="/Bharat{{invoice.file_path}}" target="_blank" class="col-md-3"><img src="./Customercare/images/logo-adobe-pdf.jpg" width="50" height="50"/></a> </p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h3>Send Push Notification</h3>
+                <pushnotification></pushnotification>
+            </div>
+        </div>
+</div>

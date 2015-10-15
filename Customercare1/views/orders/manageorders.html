@@ -1,0 +1,54 @@
+<div ng-controller="ordersController" ng-init="getAllOrders()">
+    <span us-spinner="{radius:50, width:8, length: 16}" spinner-key="spinner-1"></span>
+    <div class="row"> 
+        <div class="col-lg-6">
+             <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="date" is-open="status.opened"  ng-required="true" close-text="Close" myDate ng-change="getAllOrders()" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+        <div class="col-lg-6">
+            <select ng-model="order_type_select" class="form-control" ng-change="selectOrderByType()">
+                <option value="0">All</option>
+                <option value="1">Quote</option>
+                <option value="2">Placed</option>
+            </select>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            
+            <table class="table table-bordered table-condensed table-hover table-striped">
+                <thead>
+                    <tr>
+                        <td>Order id</td>
+                        <td>Order date</td>
+                        <td>Order Type</td>
+                        <td>Order Status</td>
+                        <td>Handled By</td>
+                        <td>Option</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="noorders == true">
+                        <td colspan="7">Sorry no orders found</td>
+                    </tr>
+                    <tr ng-repeat="orders in orderList" ng-if="noorders == false"> 
+                        <td>{{orders.order_id}}</td>
+                        <td>{{orders.order_date}}</td>
+                        <td>{{orders.order_type}}</td>
+                        <td>{{orders.status_description}}</td>
+                        <td>{{orders.handled_by.emp_name}}</td>
+                        <td><!--<a  class="btn btn-sm btn-info" href="#/dashboard/vieworderDetail?order_id={{orders.order_id}}">View Order</a>-->
+                            <button ng-click="checkorAssignOrderForUserfromManageOrder({{orders.order_id}})">View Order</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>

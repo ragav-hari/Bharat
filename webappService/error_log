@@ -1,0 +1,7 @@
+[15-Oct-2015 04:31:40 America/Denver] PHP Notice:  Undefined property: stdClass::$bh_id in /home5/ashineor/public_html/cloudservices/Bharat/webappService/adduserdetail.php on line 14
+[15-Oct-2015 04:31:40 America/Denver] PHP Notice:  Undefined property: stdClass::$bh_name in /home5/ashineor/public_html/cloudservices/Bharat/webappService/adduserdetail.php on line 15
+[15-Oct-2015 04:31:40 America/Denver] PHP Notice:  Undefined property: stdClass::$bh_user_name in /home5/ashineor/public_html/cloudservices/Bharat/webappService/adduserdetail.php on line 16
+[15-Oct-2015 04:31:40 America/Denver] PHP Notice:  Undefined property: stdClass::$bh_password in /home5/ashineor/public_html/cloudservices/Bharat/webappService/adduserdetail.php on line 17
+[15-Oct-2015 04:31:40 America/Denver] PHP Notice:  Undefined property: stdClass::$bh_mobno in /home5/ashineor/public_html/cloudservices/Bharat/webappService/adduserdetail.php on line 18
+[15-Oct-2015 04:31:40 America/Denver] PHP Notice:  Undefined property: stdClass::$bh_email in /home5/ashineor/public_html/cloudservices/Bharat/webappService/adduserdetail.php on line 19
+[15-Oct-2015 04:31:40 America/Denver] PHP Notice:  Undefined property: stdClass::$bh_userrole in /home5/ashineor/public_html/cloudservices/Bharat/webappService/adduserdetail.php on line 20

@@ -8,8 +8,6 @@
  $postdata = file_get_contents("php://input");
  $request = json_decode($postdata);
  
- $order_id = $request->order_id;
- $status   = '105';
+ $mobile = $request->user_mobileno;
  
- echo json_encode($obj->changeOrderStatusofOrder($conn,$order_id,$status));
- 
+ echo json_encode($obj->getallordersformobile($conn,$mobile));

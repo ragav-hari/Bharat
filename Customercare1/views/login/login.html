@@ -1,0 +1,22 @@
+<div class="login-page" ng-controller="userController" ng-init="checkLogin()"> 
+     <span us-spinner="{radius:50, width:8, length: 16}" spinner-key="spinner-1"></span>
+     <div class=row> 
+         <div class="col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4"> 
+             <img src="/Bharat/Customercare/images/flat-avatar.png" class=user-avatar> 
+             <h3>Bharat Ration Customer Care</h3> 
+             <form role=form name="form" ng-submit="userLogin()"> 
+                 <div class=form-content> 
+                     <div class=form-group> 
+                         <input type=email required class="form-control input-underline input-lg" id="loginid" name="loginid" ng-model="user.loginid" placeholder=Email> 
+                     </div> 
+                     <div class=form-group> 
+                         <input type=password required="" class="form-control input-underline input-lg" id="password" name="password" ng-model="user.password" placeholder=Password> 
+                     </div> 
+                 </div> 
+                 <p style="text-align: center;color:white">{{loginErrorMessage}}</p>
+                 <button type=submit class="btn btn-white btn-outline btn-lg btn-rounded">Login</button> 
+             </form> 
+             <a ui-sref="forgotpassword" class="forgorpasswordlink">Forgot Password</a>
+         </div> 
+     </div> 
+ </div>
