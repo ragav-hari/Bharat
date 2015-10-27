@@ -4,13 +4,14 @@ var bharat = angular.module('bharat',['ui.router','ngAnimate','ngTouch','ngFileU
 
 bharat.config(["$stateProvider","$urlRouterProvider",function(stateProvider,urlRouterProvider){
     urlRouterProvider
-    .when('/dashboard','/dashboard/manageorders','/dashboard/vieworderdetail','dashboard/viewallusers','dashboard/changepassword'),
+    .when('/dashboard','/dashboard/manageorders','/dashboard/vieworderdetail','dashboard/viewallusers','dashboard/changepassword','/forgotpasswordnew?emailmessage'),
     urlRouterProvider
     .otherwise('/login'),
     stateProvider
     .state("base", {"abstract": !0,url: "",templateUrl: "Customercare/views/base.html"})
     .state("login", {url: "/login",parent: "base",templateUrl: "Customercare/views/login/login.html",controller: "userController"})
     .state("forgotpassword", {url: "/forgotpassword",parent: "base",templateUrl: "Customercare/views/user/forgotPassword.html",controller: "userController"})
+    .state("passwordchange", {url: "/passwordchange",parent: "base",templateUrl: "Customercare/views/user/passwordchange.html",controller: "userController"})
     .state("dashboard",{url: "/dashboard",templateUrl : "Customercare/views/dashboard.html", parent: "base",controller  : 'userController'})
     .state("manageorders",{url: "/manageorders",parent: "dashboard",templateUrl: "Customercare/views/orders/manageorders.html"})
     .state("vieworderdetail",{url: "/vieworderDetail",parent: "dashboard",templateUrl: "Customercare/views/orders/vieworderdetail.html",params: {'order_id':null},controller:'ordersController'})

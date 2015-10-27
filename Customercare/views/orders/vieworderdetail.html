@@ -20,7 +20,7 @@
                 <h3>Orders</h3>
 
                      <div ng-if="itemType == 'image'">
-                         <a ng-repeat="items in orderItems" target="_blank" href="./uploads/{{items.item_name}}"><img  src="UPLOADS/{{items.item_name}}" class="order_image col-md-3"/></a>
+                         <a ng-repeat="items in orderItems" target="_blank" href="./uploads/{{items.item_name}}"><img  src="./uploads/{{items.item_name}}" class="order_image col-md-3"/></a>
                      </div>
                     
                      <div ng-if="itemType == 'audio'">

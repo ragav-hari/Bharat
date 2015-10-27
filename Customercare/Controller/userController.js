@@ -243,6 +243,7 @@
             $scope.startSpin();
             var data = {"user_email":$scope.emailid};
             userService.forgotpassword(data).then(function(response){
+                console.log("hello"+JSON.stringify(response));
                if(response.status === "Success")
                {
                    $scope.codesend = true;
@@ -334,6 +335,59 @@
             }
         }
         
+        $scope.forgotpasswordChange = function()
+        {
+         
+          var querystring = $location.search();
+           $scope.codedata =querystring.code;
+          $scope.email=querystring.email;
+          var data = {code:$scope.codedata,email:$scope.email}
+          userService.changeForgotPassword(data).then(passresponse);
+           
+            function passresponse(response)
+            {   
+                console.log("JSN"+JSON.stringify(response));
+                if(response.status=="Success")
+                {
+                    window.localStorage.setItem("emailid",response.email); 
+                    
+                }
+                else
+                {
+                    
+                    $location.path("/login");
+                }
+            
+            }
+        }   
+        $scope.setPassword = function()
+        {
+            
+            //$scope.passcode is the password
+            $scope.passcode;
+            $scope.passcodenew;
+            alert("pass"+$scope.passcode);
+            alert("passcode"+$scope.passcodenew);
+            
+            if($scope.passcode!=$scope.passcodenew)
+            {
+               $scope.error_message="Password and Confirm Password Does not Match"; 
+               
+            }
+            else
+            {
+                var querystring = $location.search();
+                $scope.email=querystring.email;
+                var data = {passcode:$scope.passcode,email:$scope.email}
+                userService.setPassword(data).then(setpassresponse);
+                function setpassresponse(response)
+                {
+                 console.log("resp is"+JSON.stringify(response));   
+
+                }   
+            }
+           
+        }
         
     } 
-}())
+}());

@@ -15,7 +15,9 @@
             forgotpassword              : forgotpassword,
             verifycode                  : verifycode,
             changeforgottenPassword     : changeforgottenPassword,
-            changePassword              : changePassword  
+            changePassword              : changePassword,
+            changeForgotPassword        : changeForgotPassword,
+            setPassword                 : setPassword,
         }
         
         /*function userRegistration()
@@ -76,6 +78,15 @@
         function changePassword(data)
         {
             return $http({method: 'POST',data:data,url:HOST+CHANGE_PASSWORD}).then(function(response){return response.data;});
+        }
+        
+         function changeForgotPassword(data)
+        {
+            return $http({method: 'POST',data:data,url:HOST+CHANGE_FORGOT_PASSWORD}).then(function(response){return response.data;});
+        }
+          function  setPassword(data)
+        {
+            return $http({method: 'POST',data:data,url:HOST+SET_PASSWORD}).then(function(response){return response.data;});
         }
     }
 }())

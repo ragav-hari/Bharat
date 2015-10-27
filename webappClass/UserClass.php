@@ -240,7 +240,16 @@ class UserClass
             $result = mysqli_query($conn, $query);
             if($result)
             {
-                $response = array("status"=>"Success","message"=>"Random Code Inserted");
+                
+                 $email =  $this->sendEmail($user_email,$randomcode);
+                 if($email)
+                 {
+                   $response = array("status"=>"Success","message"=>"Email send");  
+                 }
+                 else
+                 {
+                     $response = array("status"=>"Failure","message"=>"Mail Not Send");
+                 }
             }
             else
             {
@@ -253,8 +262,26 @@ class UserClass
         }
         return $response;
     }
-    
-    function verifyCode($conn,$user_email,$user_code)
+    function  sendEmail($user_email,$randomcode)
+    {
+       $email_to = $user_email;
+       $email_subject ="Forgot Password Link";
+       $emailmessage = $randomcode;
+       
+       
+       $email_message ="http://www.cloudservices.ashinetech.com/Bharat/#/passwordchange?code=$emailmessage&email=$user_email";
+      
+                // create email headers
+        $email_from = "Bharat Ration";
+        $headers = 'From: '.$email_from."\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        'Reply-To: '.$email_from."\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+        $response =  mail($email_to, $email_subject, $email_message, $headers);  
+
+        return   $response; 
+    }
+    function verifyCode($conn,$user_code,$user_email)
     {
         $query = "select * from forgotpassword where email = '$user_email' order by id desc limit 1";
         $result = mysqli_query($conn, $query);
@@ -335,5 +362,39 @@ class UserClass
             $response = array("status"=>"Failure","message"=>"Incorrect Old Password");  
         }
         return $response;
+    }
+    function changeforgotpassword($conn,$codes,$email)
+    {
+        $query  = "select * from forgotpassword where email = '$email' and code = '$codes'";
+        $result = mysqli_query($conn, $query);
+        $count  = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+           $response = array("status"=>"Success","message"=>"Code Verified","email"=>$email);
+        }
+        else
+        {
+           $response = array("status"=>"Failure","message"=>"Failed");
+        }  
+        
+        return $response;
+    }
+    function  setPassword($conn,$pass,$email)
+    {
+        $query  = "update employee set bh_user_password = '$pass' where bh_emailid = '$email'";
+        $result = mysqli_query($conn, $query);
+            
+            if($result)
+            {
+                $response = array("status"=>"Success","message"=>"Password Changed Successfully");  
+            }
+            else 
+            {
+                $response = array("status"=>"Failure","message"=>"Error Please try again","error"=>$conn->error);  
+            }
+         
+        return $response;
+                 
     }
 }
