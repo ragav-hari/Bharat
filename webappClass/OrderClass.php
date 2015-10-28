@@ -306,9 +306,36 @@ class OrderClass
         return $response;
     }
 
+    function checkInvoiceExists($con,$order_id)
+    {
+        $query      =   "select * from invoice where order_id = '$order_id'";
+        $result     =   mysqli_query($con, $query);
+        $count      = mysqli_num_rows($result);
+        
+        if($count > 0)
+        {
+            $response = true;
+        }
+        else
+        {
+            $response = false;
+        }
+        return $response;
+    }
+    
     function generateInvoiceandUpdateOrder($con,$order_id,$filename,$target_path,$user_id,$order_type)
     {
-        $query  = "insert into invoice(order_id,file_name,file_url,user_id) values('$order_id','$filename','$target_path','$user_id')";
+        $checkinvoice = $this->checkInvoiceExists($con, $order_id);
+        
+        if($checkinvoice)
+        {
+            $query  = "update invoice set file_name='$filename',file_url='$target_path' where order_id = '$order_id' and user_id = '$user_id'";
+        }
+        else
+        {
+            $query  = "insert into invoice(order_id,file_name,file_url,user_id) values('$order_id','$filename','$target_path','$user_id')";
+        }
+        
         $result = mysqli_query($con, $query);
         if($result)
         {

@@ -1,0 +1,6 @@
+1.Wrong OTP
+2.Text box center
+3.View orders increase height
+4.Proceed button font size increase  
+5.Please wait 
+6.Account type border - light grey

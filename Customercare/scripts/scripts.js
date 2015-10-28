@@ -14,7 +14,7 @@ bharat.config(["$stateProvider","$urlRouterProvider",function(stateProvider,urlR
     .state("passwordchange", {url: "/passwordchange",parent: "base",templateUrl: "Customercare/views/user/passwordchange.html",controller: "userController"})
     .state("dashboard",{url: "/dashboard",templateUrl : "Customercare/views/dashboard.html", parent: "base",controller  : 'userController'})
     .state("manageorders",{url: "/manageorders",parent: "dashboard",templateUrl: "Customercare/views/orders/manageorders.html"})
-    .state("vieworderdetail",{url: "/vieworderDetail",parent: "dashboard",templateUrl: "Customercare/views/orders/vieworderdetail.html",params: {'order_id':null},controller:'ordersController'})
+    .state("vieworderdetail",{url: "/vieworderDetail?order_id",parent: "dashboard",templateUrl: "Customercare/views/orders/vieworderdetail.html",controller:'ordersController'})
     .state("viewallusers",{url: "/viewallusers",parent: "dashboard",templateUrl: "Customercare/views/user/viewAllUsers.html",controller:'userController'})
     .state("changepassword", {url: "/changepassword",parent: "dashboard",templateUrl: "Customercare/views/user/changepassword.html",controller: "userController"})
     .state("allocatework",{url: "/allocatework",parent: "dashboard",templateUrl: "Customercare/views/orders/allocatework.html",controller:'ordersController'});

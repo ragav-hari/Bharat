@@ -137,7 +137,8 @@
         $scope.getSingleOrderDetail = function()
         {
            $scope.startSpin();
-           $scope.order_id = $state.params["order_id"];
+           //$scope.order_id = $state.params["order_id"];
+           $scope.order_id = $location.search().order_id;
            $scope.user_id  = sessionStorage.userid;
            $scope.checkorAssignOrderForUserfromQueryString($scope.order_id,$scope.user_id);
            ordersService.getSingleOrderDetail({"order_id":$scope.order_id}).then(function(response){

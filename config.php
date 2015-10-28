@@ -16,7 +16,7 @@ class config {
     {
       // return mysqli_connect("localhost","ashineor_bharat","Ashine123Ashine123","ashineor_bharat");
         
-       return mysqli_connect("localhost","root","","ashineor_bharat");
+       return mysqli_connect("localhost","root","root","bharat");
     }
     
 }
