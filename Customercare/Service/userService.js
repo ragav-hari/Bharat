@@ -12,6 +12,7 @@
             getUserDataByID             : getUserDataByID,
             editUserData                : editUserData,
             deleteUser                  : deleteUser,
+            revokeUser                  : revokeUser,  
             forgotpassword              : forgotpassword,
             verifycode                  : verifycode,
             changeforgottenPassword     : changeforgottenPassword,
@@ -58,6 +59,11 @@
         function deleteUser(data)
         {
             return $http({method: 'POST',data:data,url:HOST+DELETE_USER_DATA}).then(function(response){return response.data;});
+        }
+        
+        function revokeUser(data)
+        {
+            return $http({method: 'POST',data:data,url:HOST+REVOKE_USER_PROFILE}).then(function(response){return response.data;});
         }
         
         function forgotpassword(data)

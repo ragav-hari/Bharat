@@ -1,0 +1,13 @@
+1. limit to 10 digits - completed
+2. Mobile no next same color - completed
+3. clear next button disable - completed
+4. mobile no text box width increase to 5% - completed
+5. center align mobile no text and no text(verticle align) - completed
+6. Bharat ration font increase - completed 
+7. OTP number(label) size same as keypad size - completed
+8. Select from galley and take picture space increase - completed
+9. Button size should be same as next button
+10.Background color grey check - completed
+11. Audio cancel should go to previous page
+12. Followup with arun 
+13. Wrong OTP error - completed

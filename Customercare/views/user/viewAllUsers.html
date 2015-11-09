@@ -39,7 +39,8 @@
                      <td>{{users.code_description}}</td>
                      <td>
                          <button class="button btn-sm  btn-primary" ng-click="openEditModal({{users.id}})">Edit</button>
-                         <button class="button btn-sm  btn-danger" ng-click="deleteUser({{users.id}})">Delete</button>
+                         <button class="button btn-sm  btn-danger" ng-show="users.code_description == 'Active'" ng-click="deleteUser({{users.id}})">De-Activate</button>
+                         <button class="button btn-sm btn-info user_activate" ng-show="users.code_description == 'InActive'" ng-click="revokeUser({{users.id}})">Activate</button>
                      </td>
                  </tr>
              </tbody>

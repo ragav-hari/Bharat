@@ -341,7 +341,16 @@ class OrderClass
         {
             if($order_type == "Quote")
             {
-                $response[] = array("status"=>"Success","file_path"=>$target_path,"order_status"=>"","OrderDetail"=>$this->updateOrderStatus($con, $order_id, "106"));
+                $status = $this->getOrderStatus($con,$order_id);
+                if($status == "106")
+                {
+                    $response[] = array("status"=>"Success","file_path"=>$target_path,"order_status"=>"","OrderDetail"=>$this->updateOrderStatus($con, $order_id, "107"));
+                }
+                else
+                {
+                    $response[] = array("status"=>"Success","file_path"=>$target_path,"order_status"=>"","OrderDetail"=>$this->updateOrderStatus($con, $order_id, "106"));
+                }
+                
             }
             else
             {
@@ -353,6 +362,19 @@ class OrderClass
             $response[] = array("status"=>"Failure","message"=>"Failed to upload");
         }
         return $response;
+    }
+    
+    function getOrderStatus($conn,$order_id)
+    {
+        $query = "select order_status from orders where order_id = '$order_id'";
+        $result = mysqli_query($conn, $query);
+        
+                
+        while($row = mysqli_fetch_array($result))
+        {
+            $status = $row["order_status"];
+        }
+        return $status;
     }
     
     function updateOrderStatus($con,$order_id,$status)

@@ -408,6 +408,7 @@ class User
         $order_id = $this->getOrderID($con)+1;
         $user_id = $this->getUserID($con, $mobileno);
         
+        date_default_timezone_set("Asia/Kolkata"); 
         $now = date("Y-m-d H:i:s");
         $query = "insert into orders(order_id,order_date,user_id,order_status) values('$order_id','$now','$user_id','104')";
         $result = mysqli_query($con, $query);

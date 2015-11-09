@@ -82,7 +82,7 @@ class UserClass
     
     function getAllUserDetails($conn)
     {
-        $query  = "select emp.*,status.code_description,r.name as role_name from employee emp join statuscode status on status.code_id = emp.bh_status join roles r on r.id = emp.user_role";
+        $query  = "select emp.*,status.code_description,r.name as role_name from employee emp join statuscode status on status.code_id = emp.bh_status join roles r on r.id = emp.user_role where emp.id != 1";
         $result = mysqli_query($conn,$query);
         $count = mysqli_num_rows($result);
         
@@ -203,6 +203,22 @@ class UserClass
         else 
         {
            $response[] = array("status"=>"Failure","message"=>"Profile Deactivation Error","Source"=>$conn->error); 
+        }
+        return $response;
+    }
+    
+    function revokeUserDetail($conn,$userid)
+    {
+        $query = "update employee set bh_status = '103' where id = '$userid'";
+        $result = mysqli_query($conn, $query);
+        
+        if($result)
+        {
+            $response[] = array("status"=>"Success","message"=>"Profile Activated Successfully");
+        }
+        else 
+        {
+           $response[] = array("status"=>"Failure","message"=>"Profile Activation Error","Source"=>$conn->error); 
         }
         return $response;
     }

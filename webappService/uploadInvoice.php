@@ -11,10 +11,15 @@ $orderobj = new OrderClass();
 $target_path = "../uploads/";
 
 $error       = array();
-$filename    = $_FILES['file']['name'];
+
+
+$tmp         = explode(".", $_FILES['file']['name']);
+$digits = 5;
+$rand = rand(pow(10, $digits-1), pow(10, $digits)-1);
+$newfilename = $rand.round(microtime(true)).".".end($tmp);
 $temp        = $_FILES["file"]['tmp_name'];
-$target_path = $target_path . basename($filename); 
-$insert_path = "/uploads/".basename($filename);
+$target_path = $target_path . $newfilename; 
+$insert_path = "/uploads/".$newfilename;
 
 $order_id   =   $_POST["order_id"];
 $user_id    =   $_POST["user_id"];

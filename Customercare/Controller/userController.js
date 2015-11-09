@@ -219,12 +219,33 @@
         {
             
             var data = {"user_id":userid};
-            var deleteconfirm = confirm("Do you want to delete this profile?");
+            var deleteconfirm = confirm("Do you want to De-Activate this profile?");
             
             if(deleteconfirm == true)
             {
                $scope.startSpin();
                userService.deleteUser(data).then(function(response)
+                {
+                    $scope.stopSpin();
+                    alert(response[0].message);
+                    $state.reload();
+                }) 
+            }
+            else
+            {
+                $state.reload();
+            } 
+        }
+        
+        $scope.revokeUser = function(userid)
+        {
+            var data = {"user_id":userid};
+            var revokeconfirm = confirm("Do you want to Activate this profile?");
+            
+            if(revokeconfirm == true)
+            {
+               $scope.startSpin();
+               userService.revokeUser(data).then(function(response)
                 {
                     $scope.stopSpin();
                     alert(response[0].message);
